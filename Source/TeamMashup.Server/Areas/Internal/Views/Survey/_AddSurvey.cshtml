@@ -1,0 +1,13 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Core;
+
+@using(Ajax.CustomBeginForm("AddSurvey", "addSurvey", new { role = "form", @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label class="sr-only" for="title">@Localized.Title</label>
+        <input type="text" id="title" name="title" class="form-control fixed-w-500" placeholder="@Localized.Title" />
+        @Html.ValidationPopover("title")
+    </div>
+    
+    <button id="add" type="submit" class="btn btn-primary">@Localized.Add</button>
+}

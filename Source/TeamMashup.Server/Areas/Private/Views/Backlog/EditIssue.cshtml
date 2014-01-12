@@ -1,0 +1,93 @@
+﻿@using TeamMashup.Core.I18n
+
+@model TeamMashup.Models.Private.IssueModel
+
+@{
+    ViewBag.Title = "EditUserStory";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#searchUsers").typeahead({
+            remote: '@Url.Action("SearchUsers", "Backlog")?searchTerm=%QUERY',
+            template: '<p>{{name}}</p>',
+            engine: Hogan,
+            limit: 10,
+            valueKey: "name"
+        })
+        .bind("typeahead:selected", function (obj, datum) {
+            $("#reporterId").val(datum.value);
+        });
+
+    });
+
+</script>
+
+<div id="plan">
+    <div class="backlog">
+        <ol class="breadcrumb">
+            <li><a href="#">SampleProject</a></li>
+            <li><a href="#">COD-000</a></li>
+        </ol>
+        <div class="page-header">
+            <h2>@Model.Summary</h2>
+        </div>
+
+        @using (Html.BeginForm("Edit", "Backlog", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+        {
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="state" value="@Model.State" />
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="summary" class="col-md-2 control-label">@Localized.Summary</label>
+                        <div class="col-md-10">
+                            <input type="text" name="summary" id="summary" value="@Model.Summary" class="form-control" />
+                            @Html.ValidationMessage("summary", new { @class = "control-label" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-md-2 control-label">@Localized.Description</label>
+                        <div class="col-md-10">
+                            <textarea id="description" name="description" class="form-control no-resize">@Model.Description</textarea>
+                            @Html.ValidationMessage("description", new { @class = "control-label" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reporter" class="col-md-2 control-label">@Localized.Reporter</label>
+                        <div class="col-md-10">
+                            <input id="searchUsers" name="reporter" type="text" value="@Model.ReporterName" class="form-control" />
+                            <input type="hidden" id="reporterId" name="reporterId" value="@Model.ReporterId"/>
+                            @Html.ValidationMessage("reporterId", new { @class = "control-label" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="col-md-2 control-label">@Localized.Type</label>
+                        <div class="col-md-10">
+                            <select id="type" name="type" class="form-control fixed-w-200">
+                                <option value="1">Story</option>
+                                <option value="2">Defect</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="storyPoints" class="col-md-2 control-label">@Localized.StoryPoints</label>
+                        <div class="col-md-10">
+                            <input type="text" id="storyPoints" name="storyPoints" value="@Model.StoryPoints" class="form-control fixed-w-200" />
+                            @Html.ValidationMessage("storyPoints", new { @class = "control-label" })
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary">@Localized.Save</button>
+                        <a href="@Url.Action("Index")" class="btn btn-default">@Localized.Cancel</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        }
+    </div>
+</div>

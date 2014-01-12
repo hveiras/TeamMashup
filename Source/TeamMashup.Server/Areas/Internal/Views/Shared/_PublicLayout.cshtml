@@ -1,0 +1,36 @@
+﻿@using System.Web.Optimization
+
+<!DOCTYPE html>
+<html id="internal" lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/teammashup")
+
+    @Styles.Render("~/Content/styles")
+
+     <script type="text/javascript">
+
+         $(document).ready(function () {
+             applyUiErrorStylesIfAny();
+         });
+
+    </script>
+
+</head>
+
+<body class="public">
+    <div id="page">
+        <header id="header" role="banner">
+        </header>
+        <section id="content" role="main">
+            @RenderBody()
+        </section>
+        <footer id="footer" role="contentinfo">
+
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.Title = "LogViewer";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+
+    $(document).ready(function () {
+
+        table = new TeamMashupDataTable({
+            tableId: "logsTable",
+            sourceUrl: '@Url.Action("GetLogItems", "Tracking")',
+            columns: [
+                { "mData": "Message", "sTitle": "Message" }
+            ],
+            showEdit: false,
+            showEditInNewWindow: false,
+            showMoreOptions: false,
+            showDelete: false,
+            enableSearch: true
+        });
+
+        $('#searchLog').typeWatch({
+            callback: function (value) { table.search(value); },
+            wait: 750,
+            highlight: true,
+            captureLength: 2
+        });
+
+    });
+
+</script>
+
+<div id="logViewer">
+    <ul class="nav nav-pills">
+            <li class="active"><a href="#">Platform</a></li>
+            <li><a href="#">Tenants</a></li>
+            <li><a href="#">All</a></li>
+        </ul>
+
+    <div class="table-container">
+
+        <div class="table-search">
+            <input type="text" id="searchLog" class="search-query" placeholder="Search" />
+        </div>
+
+        <table id="logsTable" class="grid-control">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+</div>

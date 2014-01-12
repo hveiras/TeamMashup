@@ -1,0 +1,105 @@
+﻿@using TeamMashup.Core.I18n
+@using TeamMashup.Server.Areas.Internal.Views.Survey.i18n
+
+@model TeamMashup.Models.Internal.SurveyModel
+@{
+    ViewBag.Title = "EditSurvey";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal
+
+    $(document).ready(function () {
+        table = new TeamMashupDataTable({
+            tableId: "surveyOptionsTable",
+            sourceUrl: '@Url.Action("GetSurveyOptionsItems", "Survey")?surveyId=@Model.Id',
+            columns: [
+                { "mData": "Description", "sTitle": "@Localized.Description" },
+                { "mData": "Votes", "sTitle": "@Localized.Votes" },
+            ],
+            deleteUrl: '@Url.Action("DeleteSurveyOptions", "Survey")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("DeleteSurveyOptions", "Survey")?id=' + id,
+                    deleteAction: '@Url.Action("DeleteSurveyOptions", "Survey")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+
+                modal = $('#modal');
+
+                modal.load('@Url.Action("EditSurveyOption", "Survey")?id=' + id, function () {
+                    modal.modal();
+                });
+            },
+            onDraw: function () {
+                bindJsModals();
+            },
+            showEditInNewWindow: false,
+            showMoreOptions: false
+        });
+
+    });
+
+    function addSurveyOptionComplete() {
+    }
+
+    function addSurveyOptionSuccess(data) {
+        addSurveyOptionContainerUpdate(data);
+        table.draw();
+    }
+
+    function addSurveyOptionValidationErrors(data) {
+        addSurveyOptionContainerUpdate(data);
+        applyUiErrorStylesIfAny();
+    }
+
+    function addSurveyOptionContainerUpdate(data) {
+        $("#addSurveyOptionContainer").html(data.View);
+    }
+
+</script>
+
+<div id="survey">
+    <div class="surveys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div id="addSurveyOptionContainer">
+                    @{ Html.RenderAction("AddSurveyOption", new { surveyId = Model.Id }); }
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="table-container">
+                    <table id="surveyOptionsTable" class="grid-control table table-striped">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                @if(!Model.Active)
+                {
+                    <a href="@Url.Action("Start", "Survey", new { surveyId = Model.Id })" class="btn btn-primary">@Survey.StartSurvey</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Finish", "Survey", new { surveyId = Model.Id })" class="btn btn-warning">@Survey.FinishSurvey</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal" class="modal" role="dialog"></div>

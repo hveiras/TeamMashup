@@ -1,0 +1,1231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Deployments\Installer\Web</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/Admin/Views/Admin/Index.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Project/Index.cshtml">
+      <publishTime>11/04/2013 09:05:51</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Project/Project.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/Index.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/UserRoles.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/_AddUserInline.cshtml">
+      <publishTime>10/18/2013 12:13:40</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/User/_EditUser.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Web.config">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Account/Login.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Backup/Backups.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Backup/_AddBackupRequest.cshtml">
+      <publishTime>11/07/2013 09:36:48</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Billing/Bill.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Billing/Details.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Billing/ExportBilledToExcel.cshtml">
+      <publishTime>11/08/2013 16:30:41</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Billing/Reports.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Billing/Subscriptions.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Dashboard/Dashboard.cshtml">
+      <publishTime>10/21/2013 13:08:24</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Dashboard/_AddComment.cshtml">
+      <publishTime>10/20/2013 21:42:18</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/Countries.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/Languages.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/_AddCountry.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/_AddLanguage.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/_EditCountry.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/_EditLanguage.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Region/_NavTabs.cshtml">
+      <publishTime>11/08/2013 20:13:44</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/Claims.cshtml">
+      <publishTime>10/20/2013 22:04:02</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/RoleClaims.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/RoleMembers.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/Roles.cshtml">
+      <publishTime>11/08/2013 19:45:52</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/UserRoles.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/Users.cshtml">
+      <publishTime>10/20/2013 22:04:02</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_AddClaimInline.cshtml">
+      <publishTime>10/20/2013 21:42:18</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_AddRoleInline.cshtml">
+      <publishTime>10/20/2013 21:42:18</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_AddUserInline.cshtml">
+      <publishTime>10/20/2013 21:42:18</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_EditClaim.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_EditRole.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_EditUser.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Security/_NavTabs.cshtml">
+      <publishTime>10/20/2013 21:42:18</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Shared/Error.cshtml">
+      <publishTime>10/20/2013 21:42:26</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Shared/_AccountMenu.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Shared/_DeleteModal.cshtml">
+      <publishTime>10/20/2013 21:42:26</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Shared/_PrivateLayout.cshtml">
+      <publishTime>11/10/2013 19:03:59</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Shared/_PublicLayout.cshtml">
+      <publishTime>10/20/2013 23:34:01</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Survey/EditSurvey.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Survey/Surveys.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Survey/_AddSurvey.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Survey/_AddSurveyOption.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Survey/_EditSurveyOption.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Tracking/LogViewer.cshtml">
+      <publishTime>10/20/2013 22:04:02</publishTime>
+    </File>
+    <File Include="Areas/Internal/Views/Web.config">
+      <publishTime>10/20/2013 21:20:42</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Account/Account.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/EditIssue.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/EditItem.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/Index.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/Issues.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/_AddBacklogItemDialog.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/_AddIssue.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Backlog/_AddIssueInline.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Home/Index.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Home/_AddComment.cshtml">
+      <publishTime>10/21/2013 14:16:06</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Home/_Surveys.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Issue/Issue.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/Edit.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/EditIteration.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/Index.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/Iterations.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/Resources.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/_AddIterationDialog.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Iteration/_AddIterationInline.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/IterationResource/Index.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/PlanRelease/Index.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/ProjectBase/_NavPills.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/ProjectBase/_NavTabs.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/ProjectBase/_SelectIteration.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/ProjectBase/_SelectRelease.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/Edit.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/EditRelease.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/Index.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/Plan.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/Releases.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/_AddReleaseDialog.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/_AddReleaseInline.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Release/_StartIteration.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Reports/Burndown.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Reports/Iteration.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/User/Projects.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/User/Settings.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Web.config">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Work/Board.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Work/_CloseIssue.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Private/Views/Work/_LogWork.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Home/Home.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Home/Index.cshtml">
+      <publishTime>10/18/2013 16:19:08</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Register/Congratulations.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Register/CreateSubscription.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Register/SelectPlan.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Registration/Index.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/SignIn/PasswordRecoveryEmailSent.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/SignIn/RecoverPassword.cshtml">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/SignIn/RestorePassword.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Areas/Public/Views/Web.config">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Subscription/Views/Administrators/ActivateAdministrator.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Subscription/Views/Administrators/Index.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Subscription/Views/Home/Index.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Subscription/Views/SubscriptionPlan/Index.cshtml">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Areas/Subscription/Views/Web.config">
+      <publishTime>05/09/2013 19:23:32</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/es/TeamMashup.Core.I18n.resources.dll">
+      <publishTime>12/10/2013 00:59:05</publishTime>
+    </File>
+    <File Include="bin/es/TeamMashup.Core.resources.dll">
+      <publishTime>11/30/2013 12:53:39</publishTime>
+    </File>
+    <File Include="bin/es/TeamMashup.Server.resources.dll">
+      <publishTime>12/10/2013 00:59:07</publishTime>
+    </File>
+    <File Include="bin/LinqKit.dll">
+      <publishTime>10/18/2013 11:13:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Owin.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/NLog.config">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="bin/NLog.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.IO.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Extensions.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Primitives.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.dll">
+      <publishTime>10/18/2013 11:07:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>09/07/2013 11:30:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Core.dll">
+      <publishTime>12/10/2013 00:59:06</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Core.Enums.dll">
+      <publishTime>12/10/2013 00:59:06</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Core.I18n.dll">
+      <publishTime>12/10/2013 00:59:05</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Core.pdb">
+      <publishTime>11/12/2013 09:53:04</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Membership.dll">
+      <publishTime>12/10/2013 00:59:06</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Membership.pdb">
+      <publishTime>11/12/2013 09:53:05</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Models.dll">
+      <publishTime>12/10/2013 00:59:06</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Server.dll">
+      <publishTime>12/10/2013 00:59:07</publishTime>
+    </File>
+    <File Include="bin/TeamMashup.Server.pdb">
+      <publishTime>11/12/2013 09:53:06</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>10/18/2013 11:07:31</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-modal-bs3patch.css">
+      <publishTime>09/15/2013 20:25:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-modal.css">
+      <publishTime>09/15/2013 20:25:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap-overrides.css">
+      <publishTime>10/21/2013 09:08:08</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap.css">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Content/bootstrap/bootstrap.min.css">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Content/bootstrap/datepicker.css">
+      <publishTime>10/13/2013 17:40:41</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/docs/media/css/doc.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/docs/media/css/shCore.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/docs/media/css/shThemeDataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/docs/media/images/arrow.jpg">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/docs/media/images/arrow.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/docs/media/images/extended.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/css/AutoFill.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/css/doc.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/css/shCore.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/css/shThemeDataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/images/arrow.jpg">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/images/arrow.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/docs/media/images/extended.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/AutoFill/media/images/filler.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/css/ColReorder.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/css/doc.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/css/shCore.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/css/shThemeDataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/images/arrow.jpg">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/images/arrow.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/docs/media/images/extended.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColReorder/media/images/insert.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/css/ColVis.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/css/ColVisAlt.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/docs/media/css/doc.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/docs/media/css/shCore.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/docs/media/css/shThemeDataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/docs/media/images/arrow.jpg">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/docs/media/images/arrow.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/docs/media/images/extended.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/ColVis/media/images/button.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/FixedColumns/docs/media/css/doc.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/FixedColumns/docs/media/css/shCore.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/FixedColumns/docs/media/css/shThemeDataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/FixedColumns/docs/media/images/arrow.jpg">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/FixedColumns/docs/media/images/arrow.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/FixedColumns/docs/media/images/extended.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/css/dataTables.scroller.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/docs/media/css/doc.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/docs/media/css/shCore.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/docs/media/css/shThemeDataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/docs/media/images/arrow.jpg">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/docs/media/images/arrow.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/docs/media/images/extended.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/Scroller/media/images/loading-background.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/css/TableTools.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/css/TableTools_JUI.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/background.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/collection.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/collection_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/copy.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/copy_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/csv.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/csv_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/pdf.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/pdf_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/print.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/print_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/psd/collection.psd">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/psd/copy document.psd">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/psd/file_types.psd">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/psd/printer.psd">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/xls.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/images/xls_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls.swf">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/css/demo_page.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/css/demo_table.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/css/demo_table_jui.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/css/jquery.dataTables.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/css/jquery.dataTables_themeroller.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/back_disabled.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/back_enabled.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/back_enabled_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/favicon.ico">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/forward_disabled.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/forward_enabled.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/forward_enabled_hover.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/Sorting icons.psd">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/sort_asc.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/sort_asc_disabled.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/sort_both.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/sort_desc.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/DataTables-1.9.4/media/images/sort_desc_disabled.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/elusive-webfont.css">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Content/fonts/Elusive-Icons.eot">
+      <publishTime>10/05/2013 20:38:58</publishTime>
+    </File>
+    <File Include="Content/fonts/Elusive-Icons.svg">
+      <publishTime>10/05/2013 20:38:58</publishTime>
+    </File>
+    <File Include="Content/fonts/Elusive-Icons.ttf">
+      <publishTime>10/05/2013 20:38:58</publishTime>
+    </File>
+    <File Include="Content/fonts/Elusive-Icons.woff">
+      <publishTime>10/05/2013 20:38:58</publishTime>
+    </File>
+    <File Include="Content/Images/arrow-down-white.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/brand.png">
+      <publishTime>10/20/2013 21:43:47</publishTime>
+    </File>
+    <File Include="Content/Images/cancel-20x20.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/corvalius-logo.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/daniel-profile.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/group-placeholder.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/home-screenshot-01.png">
+      <publishTime>11/11/2013 21:44:26</publishTime>
+    </File>
+    <File Include="Content/Images/home-screenshot-02.png">
+      <publishTime>11/11/2013 22:02:59</publishTime>
+    </File>
+    <File Include="Content/Images/home-screenshot.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/isologo-big-white.png">
+      <publishTime>10/20/2013 21:43:47</publishTime>
+    </File>
+    <File Include="Content/Images/logo.png">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Content/Images/project-placeholder-100x100.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/project-placeholder-150x150.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/santiago-profile.png">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Images/user-placeholder-30x30.jpg">
+      <publishTime>10/06/2013 20:32:13</publishTime>
+    </File>
+    <File Include="Content/Images/user-placeholder-50x50.jpg">
+      <publishTime>10/06/2013 20:32:13</publishTime>
+    </File>
+    <File Include="Content/public.css">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Content/styles.css">
+      <publishTime>12/01/2013 19:25:54</publishTime>
+    </File>
+    <File Include="Content/team.mashup.data-table.css">
+      <publishTime>10/21/2013 16:35:20</publishTime>
+    </File>
+    <File Include="Content/Templates/SearchList_User_Template.htm">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/Templates/User_Template.html">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/themes/tenants/styles.css">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Content/typeahead.css">
+      <publishTime>10/21/2013 09:06:45</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="NLog.config">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>11/08/2013 12:21:36</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datepicker.js">
+      <publishTime>10/13/2013 17:38:44</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-modal.js">
+      <publishTime>09/15/2013 20:30:46</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-modalmanager.js">
+      <publishTime>09/15/2013 20:30:46</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/docs/media/js/doc.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/docs/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/docs/media/js/shBrushJScript.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/docs/media/js/shCore.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extensions/fnReloadAjax.js">
+      <publishTime>09/20/2013 08:32:44</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/docs/media/js/doc.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/docs/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/docs/media/js/shBrushJScript.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/docs/media/js/shCore.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/js/AutoFill.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/js/AutoFill.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/AutoFill/media/js/AutoFill.min.js.gz">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/docs/media/js/doc.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/docs/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/docs/media/js/shBrushJScript.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/docs/media/js/shCore.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/js/ColReorder.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/js/ColReorder.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColReorder/media/js/ColReorder.min.js.gz">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/docs/media/js/doc.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/docs/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/docs/media/js/shBrushJScript.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/docs/media/js/shCore.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/js/ColVis.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/js/ColVis.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/ColVis/media/js/ColVis.min.js.gz">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/docs/media/js/doc.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/docs/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/docs/media/js/shBrushJScript.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/docs/media/js/shCore.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/media/js/FixedColumns.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/media/js/FixedColumns.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/FixedColumns/media/js/FixedColumns.min.js.gz">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/docs/media/js/doc.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/docs/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/docs/media/js/shBrushJScript.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/docs/media/js/shCore.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/js/dataTables.scroller.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/js/dataTables.scroller.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/Scroller/media/js/dataTables.scroller.min.js.gz">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/TableTools/media/js/TableTools.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/TableTools/media/js/TableTools.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/TableTools/media/js/TableTools.min.js.gz">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/extras/TableTools/media/js/ZeroClipboard.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/media/js/jquery.dataTables.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/DataTables-1.9.4/media/js/jquery.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/flot/excanvas.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/excanvas.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.colorhelpers.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.colorhelpers.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.canvas.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.canvas.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.categories.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.categories.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.crosshair.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.crosshair.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.errorbars.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.errorbars.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.fillbetween.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.fillbetween.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.image.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.image.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.navigate.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.navigate.min.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.pie.js">
+      <publishTime>11/04/2013 09:20:10</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.pie.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.resize.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.resize.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.selection.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.selection.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.stack.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.stack.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.symbol.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.symbol.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.threshold.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.threshold.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.time.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/flot/jquery.flot.time.min.js">
+      <publishTime>11/04/2013 09:20:09</publishTime>
+    </File>
+    <File Include="Scripts/hogan-2.0.0.js">
+      <publishTime>09/07/2013 18:59:40</publishTime>
+    </File>
+    <File Include="Scripts/hogan-2.0.0.min.js">
+      <publishTime>09/07/2013 18:59:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.0.3.js">
+      <publishTime>09/05/2013 19:23:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.0.3.min.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.0.3.min.map">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.10.3.custom.js">
+      <publishTime>10/15/2013 09:58:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.10.3.custom.min.js">
+      <publishTime>10/15/2013 09:58:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery.dataTables.rowReordering.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.extensions.js">
+      <publishTime>10/21/2013 22:07:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-1.1.3.js">
+      <publishTime>10/20/2013 21:38:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-1.1.3.min.js">
+      <publishTime>10/20/2013 21:38:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery.typewatch.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-langs.js">
+      <publishTime>11/08/2013 12:21:36</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-langs.min.js">
+      <publishTime>11/08/2013 12:21:36</publishTime>
+    </File>
+    <File Include="Scripts/moment.js">
+      <publishTime>11/08/2013 12:21:36</publishTime>
+    </File>
+    <File Include="Scripts/moment.min.js">
+      <publishTime>11/08/2013 12:21:36</publishTime>
+    </File>
+    <File Include="Scripts/mustache.js">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Scripts/team.mashup.core.js">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Scripts/team.mashup.data-table.js">
+      <publishTime>10/12/2013 16:26:34</publishTime>
+    </File>
+    <File Include="Scripts/team.mashup.ui.js">
+      <publishTime>10/21/2013 13:32:01</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.js">
+      <publishTime>09/07/2013 15:51:17</publishTime>
+    </File>
+    <File Include="Scripts/typeahead.min.js">
+      <publishTime>09/07/2013 15:51:17</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_ActionBar.cshtml">
+      <publishTime>05/09/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_ChatClient.cshtml">
+      <publishTime>11/09/2013 15:55:38</publishTime>
+    </File>
+    <File Include="Views/Shared/_ChatWindow.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_CurrentUserDisplay.cshtml">
+      <publishTime>09/28/2013 20:58:53</publishTime>
+    </File>
+    <File Include="Views/Shared/_DeleteModal.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_DeleteModalOld.cshtml">
+      <publishTime>12/10/2013 00:19:43</publishTime>
+    </File>
+    <File Include="Views/Shared/_NoResultsFound.cshtml">
+      <publishTime>05/09/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_Pager.cshtml">
+      <publishTime>05/09/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_PeriodFilter.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_Printable.cshtml">
+      <publishTime>11/08/2013 10:13:41</publishTime>
+    </File>
+    <File Include="Views/Shared/_ProjectNavBar.cshtml">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_ProjectNavPills.cshtml">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_Public.cshtml">
+      <publishTime>12/10/2013 00:18:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_Tenants.cshtml">
+      <publishTime>11/09/2013 16:33:02</publishTime>
+    </File>
+    <File Include="Views/Shared/_ValidationPopover.cshtml">
+      <publishTime>11/09/2013 12:05:40</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>09/05/2013 19:23:33</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/10/2013 00:59:19</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

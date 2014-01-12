@@ -1,0 +1,101 @@
+﻿@using TeamMashup.Core.I18n
+
+@{
+    ViewBag.Title = "Countries";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal
+
+    $(document).ready(function () {
+        table = new TeamMashupDataTable({
+            tableId: "countriesTable",
+            sourceUrl: '@Url.Action("GetCountryItems", "Region")',
+            columns: [
+                { "mData": "Name", "sTitle": "@Localized.Name" },
+            ],
+            deleteUrl: '@Url.Action("DeleteCountries", "Region")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("DeleteCountries", "Region")?id=' + id,
+                    deleteAction: '@Url.Action("DeleteCountries", "Region")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+
+                modal = $('#modal');
+
+                modal.load('@Url.Action("EditCountry", "Region")?id=' + id, function () {
+                    modal.modal();
+                });
+            },
+            onDraw: function () {
+                bindJsModals();
+            },
+            showEditInNewWindow: false,
+            showMoreOptions: false
+        });
+
+    });
+
+    function addCountryComplete() {
+    }
+
+    function addCountrySuccess(data) {
+        addCountryContainerUpdate(data);
+        table.draw();
+    }
+
+    function addCountryValidationErrors(data) {
+        addCountryContainerUpdate(data);
+        applyUiErrorStylesIfAny();
+    }
+
+    function addCountryContainerUpdate(data) {
+        $("#addCountryContainer").html(data.View);
+    }
+
+</script>
+
+<div id="region">
+    <div class="countries">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", new { activeTab = "Countries" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div id="addCountryContainer">
+                                @{ Html.RenderAction("AddCountry"); }
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-container">
+                                <table id="countriesTable" class="grid-control table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog"></div>

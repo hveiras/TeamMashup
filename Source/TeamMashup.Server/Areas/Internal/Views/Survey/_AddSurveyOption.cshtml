@@ -1,0 +1,16 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Core;
+
+@model TeamMashup.Models.Internal.SurveyItemModel
+
+@using(Ajax.CustomBeginForm("AddSurveyOption", "addSurveyOption", new { role = "form", @class = "form-inline" }))
+{
+    @Html.HiddenFor(m => m.SurveyId)
+    <div class="form-group">
+        <label class="sr-only" for="description">@Localized.Description</label>
+        <input type="text" id="description" name="description" class="form-control fixed-w-500" placeholder="@Localized.Description" />
+        @Html.ValidationPopover("description")
+    </div>
+    
+    <button id="add" type="submit" class="btn btn-primary">@Localized.Add</button>
+}

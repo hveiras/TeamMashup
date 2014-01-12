@@ -1,0 +1,9 @@
+﻿@{
+    var validationKey = (string)ViewBag.ValidationKey;
+}
+<div class="popover validation bottom fixed-w-200" data-for="@validationKey">
+    <div class="arrow"></div>
+    <div class="popover-content">
+        <p>@Html.ValidationMessage(validationKey, new { @class = "control-label" })</p>
+    </div>
+</div>

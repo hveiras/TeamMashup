@@ -1,0 +1,129 @@
+﻿@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "AccessControl";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Scripts.Render("~/bundles/datatables")
+@Styles.Render("~/Content/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal;
+
+    $(document).ready(function () {
+        table = new TeamMashupDataTable({
+            tableId: "rolesTable",
+            sourceUrl: '@Url.Action("GetRoleItems", "Security")?scope=Platform',
+            columns: [
+                { "mData": "Name", "sTitle": "Role Name" },
+                {
+                    "mData": null,
+                    "sTitle": "",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<a href='@Url.Action("RoleMembers")?roleId=" + table.getOriginalId(full.DT_RowId) + "'>Manage Users</a>";
+                    }
+                },
+                {
+                    "mData": null,
+                    "sTitle": "",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<a href='@Url.Action("RoleClaims")?roleId=" + table.getOriginalId(full.DT_RowId) + "'>Manage Claims</a>";
+                    }
+                }
+            ],
+            deleteUrl: '@Url.Action("DeleteRoles", "Security")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'removeItemModal',
+                    modal: modal,
+                    displayAction: '@Url.Action("DeleteRoles", "Security")?roleId=' + id + '&_=' + $.now(),
+                    deleteAction: '@Url.Action("DeleteRoles", "Security")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+
+                modal = $('#editRoleInlineFormModal');
+
+                modal.load('@Url.Action("EditRole", "Security")?roleId=' + id + '&_=' + $.now(), function () {
+                    modal.modal();
+                });
+            },
+            onDraw: function () {
+                //bindJsModals();
+            },
+            showEditInNewWindow: false,
+            showMoreOptions: false
+        });
+
+        $('input:radio').change(function () {
+            table.reload('@Url.Action("GetRoleItems", "Security")?scope=' + $(this).val());
+            $("#scope").val($(this).val());
+         });
+
+    });
+
+    function onRoleAddedInlineSuccess(data, status, xhr) {
+
+        if (status == "success") {
+
+            applyUiErrorStylesIfAny();
+
+            table.draw();
+        }
+
+    }
+
+</script>
+
+<div id="accessControl">
+    <div class="roles">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", new { activeTab = "Roles" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default active">
+                        <input type="radio" name="scope" id="scopePlatform" value="Platform"> Platform
+                      </label>
+                      <label class="btn btn-default">
+                        <input type="radio" name="scope" id="scopeTenants" value="Tenant"> Tenants
+                      </label>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div id="addRoleInlineForm">
+                                @{ Html.RenderAction("AddRoleInline"); }
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-container">
+                                <table id="rolesTable" class="grid-control table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="removeItemModal" class="modal" role="dialog">
+</div>
+
+<div id="editRoleInlineFormModal" class="modal" role="dialog">
+</div>

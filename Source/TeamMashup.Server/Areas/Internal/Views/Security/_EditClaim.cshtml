@@ -1,0 +1,40 @@
+﻿@model TeamMashup.Models.Internal.ClaimModel
+
+<script type="text/javascript">
+
+    function onClaimEditedSuccess(data, status, xhr)
+    {
+        if (status == "success") {
+
+            if (data.Success) {
+                modal.modal('hide');
+                table.draw();
+            }
+            else {
+                $("#editClaimInlineFormModal").html(data.View);
+                applyUiErrorStylesIfAny();
+            }
+
+        }
+    }
+
+</script>
+
+@using (Ajax.BeginForm("EditClaim", null, new AjaxOptions { OnSuccess = "onClaimEditedSuccess(data, status, xhr)" }, new { role = "form" }))
+{
+    <div class="modal-body">
+
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <label for="name">Claim name</label>
+            <input type="text" id="name" name="name" value="@Model.Name" class="form-control" placeholder="Enter role name" />
+            @Html.ValidationMessage("name", new { @class = "control-label" })
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary delete">Save</button>
+    </div>
+}

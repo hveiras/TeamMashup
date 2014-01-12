@@ -1,0 +1,108 @@
+﻿@using TeamMashup.Core.I18n;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal;
+
+    $(document).ready(function () {
+
+        modal = $('#modal');
+
+        table = new TeamMashupDataTable({
+            tableId: "releasesTable",
+            sourceUrl: '@Url.Action("GetReleases")',
+            columns: [
+                { "mData": "Name", "sTitle": "@Localized.Name" },
+                { "mData": "State", "sTitle": "@Localized.State" },
+                { "mData": "From", "sTitle": "@Localized.From" },
+                { "mData": "To", "sTitle": "@Localized.To" }
+            ],
+            deleteUrl: '@Url.Action("Delete")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("Delete")?id=' + id + '&_=' + $.now(),
+                    //deleteAction: '@Url.Action("Delete")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+                var url = '@Url.Action("Edit")?id=' + id;
+                if (newWindow) {
+                    window.open(url);
+                }
+                else {
+                    window.location = url;
+                }
+            },
+            reorderRows: false
+        });
+    });
+
+    function addReleaseInlineComplete() {
+    }
+
+    function addReleaseInlineSuccess(data) {
+        addReleaseInlineContainerUpdate(data);
+        table.draw();
+    }
+
+    function addReleaseInlineValidationErrors(data) {
+        addReleaseInlineContainerUpdate(data);
+        applyUiErrorStylesIfAny();
+    }
+
+    function addReleaseInlineContainerUpdate(data) {
+        $("#addReleaseInlineContainer").html(data.View);
+    }
+
+</script>
+
+<div id="plan">
+    <div class="releases">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Plan" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @{ Html.RenderAction("NavPills", "ProjectBase", new { tab = "Plan", activePill = "Releases" });}
+
+                    <br />
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div id="addReleaseInlineContainer">
+                                @{ Html.RenderAction("AddReleaseInline"); }
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-container">
+                                <table id="releasesTable" class="grid-control table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog">
+</div>

@@ -1,0 +1,54 @@
+﻿@using TeamMashup.Core.I18n
+
+@model TeamMashup.Models.Internal.BillingReportModel
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<div id="billing">
+    <div class="reports">
+        <div class="page-header">
+            <h1>Billing Reports <small>Subtext for header</small></h1>
+        </div>
+
+        @{Html.RenderAction("PeriodFilter");}
+
+        <br />
+
+        <div>
+            @if (Model.Bills.Any())
+            {
+                <a href="@Url.Action("ExportBilledToExcel")" class="btn btn-default">Export to Excel</a>
+            }
+            <h3 class="pull-right">Total Billed: <span class="label label-success">@Model.TotalBilled</span></h3>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="table-container">
+            <table id="reportTable" class="grid-control table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Localized.Date</th>
+                        <th>@Localized.CustomerName</th>
+                        <th>@Localized.TributaryId</th>
+                        <th>@Localized.Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bill in Model.Bills)
+                    {
+                        <tr>
+                            <td>@bill.Date</td>
+                            <td>@bill.CustomerName</td>
+                            <td>@bill.TributaryId</td>
+                            <td>@bill.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

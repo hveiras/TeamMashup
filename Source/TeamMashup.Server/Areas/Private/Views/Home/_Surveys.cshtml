@@ -1,0 +1,42 @@
+﻿@using TeamMashup.Core.I18n
+
+@model IEnumerable<TeamMashup.Models.Internal.SurveyModel>
+
+@if(Model.Any())
+{
+<div id="surveys">
+    <h4>@Localized.Surveys</h4>
+
+    @foreach (var survey in Model)
+    {
+        using (Html.BeginForm("SurveyVote", "Home", FormMethod.Post, new { role = "form" }))
+        {
+            <input type="hidden" name="surveyid" value="@survey.Id" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@survey.Title</h3>
+                </div>
+                <div class="panel-body">
+
+                    @*@{ var optionsName = string.Format("{0}_option", survey.Id); }*@
+
+                    @foreach (var option in survey.Options)
+                    {
+                        //var value = string.Format("{0}_{1}", survey.Id, option.Id);
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionid" value="@option.Id" checked>@option.Description
+                            </label>
+                        </div>
+                    }
+
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">@Localized.Vote</button>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+}

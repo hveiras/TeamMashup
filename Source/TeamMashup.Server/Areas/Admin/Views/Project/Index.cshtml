@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal;
+
+    $(document).ready(function () {
+
+        table = new TeamMashupDataTable({
+            tableId: "projectsTable",
+            sourceUrl: '@Url.Action("GetProjectItems", "Project", new { Area = "Admin" })',
+            columns: [
+                {
+                    "mData": null,
+                    "sTitle": "",
+                    "sClass": "grid-field-40",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<span class='label label-primary'>COD</span>";
+                    }
+                },
+                {
+                    "mData": "Name",
+                    "sTitle": "Project Name",
+                    "mRender": function (data, type, full) {
+                        return "<a href='#'>" + data + "</a>";
+                    }
+                }
+            ],
+            rowsSelectable: false,
+            showEdit: false,
+            showEditInNewWindow: false,
+            showDelete: false,
+            showMoreOptions: false,
+            enableSearch: true
+        });
+
+        $('#searchProjects').typeWatch({
+            callback: function (value) { table.search(value); },
+            wait: 750,
+            highlight: true,
+            captureLength: 2
+        });
+
+        $("#clearSearch").click(function () {
+            $("#searchProjects").val("");
+            table.search("");
+        });
+
+    });
+
+</script>
+
+<div id="admin">
+    <div class="projects">
+        <h3 class="title-bar">Browse Projects <a href="@Url.Action("NewProject", "Project")" class="btn btn-success pull-right">Create New Project</a></h3>
+        
+        <div class="table-container">
+            <div class="table-search input-group">
+                <input type="text" id="searchProjects" class="form-control" placeholder="Search" />
+                <span class="input-group-btn">
+                    <button id="clearSearch" class="btn btn-info" type="button"><i class="icon-remove-sign"></i></button>
+                </span>
+            </div>
+            <table id="projectsTable" class="grid-control table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using TeamMashup.Core.I18n;
+
+@{ var activePill = ViewBag.ActivePill; }
+
+<ul class="nav nav-pills">
+    @{
+        switch ((string)ViewBag.Tab)
+        {
+            case "Plan":
+                <text>
+                    <li class="@Html.Raw(activePill == "Backlog" ? "active" : string.Empty)"><a href="@Url.Action("Index", "Backlog")">@Localized.Backlog</a></li>
+                    <li class="@Html.Raw(activePill == "Releases" ? "active" : string.Empty)"><a href="@Url.Action("Index", "Release")">@Localized.Releases</a></li>
+                    <li class="@Html.Raw(activePill == "Iterations" ? "active" : string.Empty)"><a href="@Url.Action("Index", "Iteration")">@Localized.Iterations</a></li>
+                    <li class="@Html.Raw(activePill == "Resources" ? "active" : string.Empty)"><a href="@Url.Action("Resources", "Iteration")">@Localized.Resources</a></li>
+                    <li class="@Html.Raw(activePill == "Plan" ? "active" : string.Empty)"><a href="@Url.Action("Plan", "Release")">@Localized.Plan</a></li>
+                </text>
+                break;
+            case "Work":
+                <text>
+                    <li class="@Html.Raw(activePill == "Tasks" ? "active" : string.Empty)"><a href="@Url.Action("Tasks", "Work")">@Localized.Tasks</a></li>
+                    <li class="@Html.Raw(activePill == "TasksHistory" ? "active" : string.Empty)"><a href="@Url.Action("TasksHistory", "Work")">@Localized.Task History</a></li>
+                </text>
+                break;
+            case "Reports":
+                <text>
+                    <li class="@Html.Raw(activePill == "Burndown" ? "active" : string.Empty)"><a href="@Url.Action("Index", "Reports")">@Localized.BurndownChart</a></li>
+                    <li class="@Html.Raw(activePill == "Iteration" ? "active" : string.Empty)"><a href="@Url.Action("Iteration", "Reports")">@Localized.IterationReport</a></li>
+                </text>
+                break;
+        }
+    }
+</ul>

@@ -1,0 +1,102 @@
+﻿@using TeamMashup.Core.I18n
+
+@{
+    ViewBag.Title = "Languages";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal
+
+    $(document).ready(function () {
+        table = new TeamMashupDataTable({
+            tableId: "languagesTable",
+            sourceUrl: '@Url.Action("GetLanguageItems", "Region")',
+            columns: [
+                { "mData": "Name", "sTitle": "@Localized.Name" },
+                { "mData": "Code", "sTitle": "@Localized.Code" },
+            ],
+            deleteUrl: '@Url.Action("DeleteLanguages", "Region")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("DeleteLanguages", "Region")?id=' + id,
+                    deleteAction: '@Url.Action("DeleteLanguages", "Region")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+
+                modal = $('#modal');
+
+                modal.load('@Url.Action("EditLanguage", "Region")?id=' + id, function () {
+                    modal.modal();
+                });
+            },
+            onDraw: function () {
+                bindJsModals();
+            },
+            showEditInNewWindow: false,
+            showMoreOptions: false
+        });
+
+    });
+
+    function addLanguageComplete() {
+    }
+
+    function addLanguageSuccess(data) {
+        addLanguageContainerUpdate(data);
+        table.draw();
+    }
+
+    function addLanguageValidationErrors(data) {
+        addLanguageContainerUpdate(data);
+        applyUiErrorStylesIfAny();
+    }
+
+    function addLanguageContainerUpdate(data) {
+        $("#addLanguageContainer").html(data.View);
+    }
+
+</script>
+
+<div id="region">
+    <div class="languages">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", new { activeTab = "Languages" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div id="addLanguageContainer">
+                                @{ Html.RenderAction("AddLanguage"); }
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="table-container">
+                                <table id="languagesTable" class="grid-control table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog"></div>

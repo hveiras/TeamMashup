@@ -1,0 +1,176 @@
+﻿body {
+    min-height: 768px;
+}
+
+#public body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#private #content {
+    padding: 70px 10px 0 10px;
+}
+
+#internal #content {
+    padding: 70px 10px 0 10px;
+}
+
+textarea.textarea-lg
+{
+    height: 48px;
+    resize:none;
+    width: 80%;
+}
+
+#internal .login .container {
+    margin-top: 100px;
+}
+
+#public .plan-box {
+    width: 300px;
+    margin: 0 10px 0 10px;
+}
+
+.color-white {
+    color: #FFF;
+}
+
+/*Chat Styles*/
+
+.chat-window
+{
+   height: 300px;
+   width: 300px;
+   position: fixed;
+   bottom:0;
+}
+
+.chat-window .display
+{
+    height: 195px;
+    margin: 0 0 10px 0;
+}
+
+.icon-chat-online {
+    color: #65A830;
+}
+
+/*End of Chat Styles*/
+
+.modal form 
+{
+    margin: 0;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.new-line {
+    clear: both;
+}
+
+.v-separator-30 {
+    width: 30px;
+}
+
+.home-right {
+    border-left: solid 1px #ccc;
+    padding: 0 10px 0 10px;
+    min-height: 738px;
+}
+
+.home-left {
+    border-right: solid 1px #ccc;
+    padding: 0 10px 0 10px;
+    min-height: 738px;
+}
+
+.table-container {
+    padding: 20px 5px 0 5px;
+}
+
+.table-container .table-search {
+    padding: 15px 0 10px 0;
+    max-width: 500px;
+}
+
+.title-bar {
+    padding: 0 10px 0 10px;
+}
+
+.fixed-w-500 {
+    width: 500px;
+}
+
+.fixed-w-200 {
+    width: 200px;
+}
+
+.fixed-w-350 {
+    width: 350px;
+}
+
+.fixed-w-150 {
+    width: 150px;
+}
+
+.fixed-w-100 {
+    width: 100px;
+}
+
+.fixed-w-50 {
+    width: 50px;
+}
+
+.no-resize {
+    resize: none;
+}
+
+.new-project .selected-members {
+    width: 680px;
+}
+
+.drop-area {
+    min-height: 600px;
+}
+
+#reports .chart {
+    height:600px;
+}
+
+#reports .progress-chart {
+    height:100px;
+}
+
+/*Bill*/
+
+.bill {
+    margin-top: 40px;
+    width: 700px;
+    height: 728px;
+}
+
+.bill .header {
+    border: 1px solid #000;
+}
+
+.bill .type {
+    margin: 5px 0 0 0;
+    border: 2px solid #000;
+    text-align: center;
+}
+
+.bill .left-aside {
+    text-align: center;
+}
+
+.bill .right-aside {
+    text-align: center;
+}
+
+/*End of Bill*/

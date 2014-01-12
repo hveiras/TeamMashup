@@ -1,0 +1,21 @@
+﻿@model TeamMashup.Models.Internal.UserChatModel
+
+<div id="chatWindow_@Model.Id" class="panel panel-primary chat-window">
+    <div class="panel-heading">
+        <h3 class="panel-title">&nbsp;@Model.Name
+            <i class="icon-torso icon-chat-online pull-left"></i>
+            <button type="button" class="close" data-user-id="@Model.Id">&times;</button>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div id="chatDisplay_@Model.Id" class="form-control display"></div>
+        <form role="form">
+            <div class="input-group">
+                <input id="chatMessage_@Model.Id" type="text" class="form-control"/>
+                <span class="input-group-btn">
+                    <button type="reset" class="btn btn-primary btn-send-message" data-user-id="@Model.Id">Send</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

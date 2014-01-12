@@ -1,0 +1,151 @@
+﻿@using TeamMashup.Core.I18n
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal;
+
+    $(document).ready(function () {
+
+        modal = $('#modal');
+
+        bindEvents();
+
+        table = new TeamMashupDataTable({
+            tableId: "issuesTable",
+            sourceUrl: '@Url.Action("GetBacklogItems", "Backlog")',
+            columns: [
+                { "mData": "Summary", "sTitle": "@Localized.Summary" },
+                {
+                    "mData": "Reporter",
+                    "sTitle": "@Localized.Reporter",
+                    "sClass": "grid-field-250",
+                },
+                {
+                    "mData": "Type",
+                    "sTitle": "@Localized.Type",
+                    "sClass": "grid-field-150",
+                    "mRender": function (data, type, full) {
+                        return "<span class='label " + getIssueTypeCssClass (data) + "'>" + data + "</span>";
+                    }
+                },
+                {
+                    "mData": "StoryPoints",
+                    "sTitle": "@Localized.StoryPoints",
+                    "sClass": "grid-field-120",
+                    "mRender": function (data, type, full) {
+                        return "<span class='badge'>" + data + "</span>";
+                    }
+                },
+                {
+                    "mData": "Priority",
+                    "sTitle": "@Localized.Priority",
+                    "sClass": "grid-field-100",
+                    "mRender": function (data, type, full) {
+                        return "<span class='badge'>" + data + "</span>";
+                    }
+                }
+            ],
+            deleteUrl: '@Url.Action("Delete", "Backlog")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("Delete", "Backlog")?id=' + id + '&_=' + $.now(),
+                    //deleteAction: '@Url.Action("Delete", "Backlog")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+                var url = '@Url.Action("Edit", "Backlog")?id=' + id;
+                if (newWindow) {
+                    window.open(url);
+                }
+                else {
+                    window.location = url;
+                }
+            },
+            reorderRows: true
+        });
+
+    });
+
+    function bindEvents() {
+
+        $("#addWithDetails").click(function () {
+            modal = $('#modal');
+            var type = $('#type option:selected').val();
+            var summary = $('#summary').val();
+            modal.load('@Url.Action("AddIssue", "Backlog")?type=' + type + '&summary=' + encodeURIComponent(summary) + '&_=' + $.now(), function () {
+                modal.modal();
+            });
+        });
+
+    }
+
+    function addIssueInlineComplete() {
+        bindEvents();
+    }
+
+    function addIssueInlineSuccess(data) {
+        addIssueInlineContainerUpdate(data);
+        table.draw();
+    }
+
+    function addIssueInlineValidationErrors(data) {
+        addIssueInlineContainerUpdate(data);
+        applyUiErrorStylesIfAny();
+    }
+
+    function addIssueInlineContainerUpdate(data) {
+        $("#addIssueInlineContainer").html(data.View);
+    }
+
+</script>
+
+<div id="plan">
+    <div class="backlog">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Plan" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @{ Html.RenderAction("NavPills", "ProjectBase", new { tab = "Plan", activePill = "Backlog" });}
+
+                    <br />
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div id="addIssueInlineContainer">
+                                @{ Html.RenderAction("AddIssueInline"); }
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-container">
+                                <table id="issuesTable" class="grid-control table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog">
+</div>

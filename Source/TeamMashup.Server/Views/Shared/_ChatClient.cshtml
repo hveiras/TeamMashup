@@ -1,0 +1,94 @@
+﻿@using System.Web.Optimization
+@using TMWebSecurity = TeamMashup.Membership.WebSecurity
+
+@Scripts.Render("~/bundles/siganlr")
+@Scripts.Render("~/signalr/hubs")
+
+<div id="chatClient" class="list-group">
+</div>
+
+<script type="text/javascript">
+
+    var chat = $.connection.chatHub;
+    var openWindowsCount = 0;
+
+    $(function () {
+
+        window.hubReady.done(function () {
+            chat.server.joinChat();
+        });
+
+    });
+
+    chat.client.refreshOnlineUsers = function (users) {
+
+        var contactsList = $("#chatClient");
+        contactsList.empty();
+
+        if (users.length == 1) {
+            contactsList.append("<p>No one is connected!</p>");
+        }
+
+        for (var i in users) {
+            var user = users[i];
+
+            if (user.Id != '@TMWebSecurity.CurrentUserId') {
+                    contactsList.append('<a href="#" onClick="openChat(' + user.Id + ')" class="list-group-item"><i class="icon-torso icon-chat-online pull-right"></i>' + user.Name + '</a>');
+                }
+
+            }
+        };
+
+        chat.client.showMessage = function (senderId, senderName, message) {
+            openChat(senderId, senderName, message);
+        };
+
+        $("#logout").click(function (event) {
+            event.preventDefault();
+            chat.server.leaveChat();
+            window.location.href = $(this).attr("href");
+        });
+
+        function openChat(userId, senderName, message) {
+
+            var chatWindow = $("#chatWindow_" + userId);
+            if (chatWindow.length > 0) {
+                chatWindow.show();
+                addChatMessage(userId, senderName, message);
+            }
+            else {
+                $.get('@Url.Action("ChatWindow")', { userId: userId, openedCount: openWindowsCount, "_": $.now() }, function (data) {
+
+                    $("body").append(data);
+
+                    addChatMessage(userId, senderName, message);
+
+                    $(".btn-send-message").click(function () {
+
+                        var callerId = '@TMWebSecurity.CurrentUserId';
+                        var receiverId = $(this).data("userId");
+                        var message = $("#chatMessage_" + receiverId).val();
+
+                        addChatMessage(receiverId, "You", message);
+                        chat.server.send(callerId, receiverId, message);
+                    });
+
+                    $(".chat-window .close").click(function () {
+
+                        var id = $(this).data("userId");
+                        $("#chatWindow_" + id).hide();
+
+                    });
+
+                });
+            }
+        }
+
+        function addChatMessage(userId, senderName, message) {
+            if (message != undefined) {
+                var display = $("#chatDisplay_" + userId);
+                display.append("<p><strong>" + senderName + ":&nbsp;</strong>" + message + "</p>");
+            }
+        }
+
+</script>

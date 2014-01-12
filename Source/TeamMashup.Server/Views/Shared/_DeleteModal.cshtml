@@ -1,0 +1,23 @@
+﻿@using TeamMashup.Core.I18n
+
+@model TeamMashup.Server.Models.DeleteModel
+
+@using (Ajax.CustomBeginForm("Delete", Model.Controller, "delete", new { role = "form" }))
+{
+    foreach (var id in Model.Ids)
+    {
+        <input type="hidden" name="ids" value ="@id" />
+    }
+    
+    <div class="modal-body">
+        <p class="modal-title"><b>@Model.Message</b></p>
+        <br />
+        <div class="alert alert-danger hide">
+            @Html.ValidationSummary(true)           
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Localized.Close</button>
+        <button type="submit" class="btn btn-primary delete">@Localized.Delete</button>
+    </div>
+}

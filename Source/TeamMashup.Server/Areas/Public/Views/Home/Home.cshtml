@@ -1,0 +1,46 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Public.Views.Home.i18n;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>@Home.Title</h1>
+        <p>@Home.Subtitle</p>
+        <p><a href="@Url.Action("SelectPlan", "Register")" class="btn btn-primary btn-lg">@Localized.Register »</a></p>
+    </div>
+</div>
+<div class="container marketing">
+
+    <!-- START THE FEATURETTES -->
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">@Home.ProjectBacklog. <span class="text-muted">@Home.AddIssuesQuickly.</span></h2>
+            <p class="lead">@Home.ProjectBacklogDescription.</p>
+        </div>
+        <div class="col-md-5">
+            <img alt="Backlog" src="@Url.Content("~/Content/Images/home-screenshot-01.png")" class="featurette-image img-responsive">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-5">
+            <img alt="Kanban" src="@Url.Content("~/Content/Images/home-screenshot-02.png")" class="featurette-image img-responsive">
+        </div>
+        <div class="col-md-7">
+            <h2 class="featurette-heading">@Home.ProjectKanban. <span class="text-muted">@Home.ChangeIssueDragAndDrop</span></h2>
+            <p class="lead">@Home.ProjectKanbanDragAndDrop.</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+</div>

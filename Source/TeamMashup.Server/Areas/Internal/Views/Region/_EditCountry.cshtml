@@ -1,0 +1,40 @@
+﻿@using TeamMashup.Core.I18n
+@using TeamMashup.Server.Areas.Internal.Views.Region.i18n
+
+@model TeamMashup.Models.Internal.CountryModel
+
+<script type="text/javascript">
+
+    function editCountryComplete() {
+    }
+
+    function editCountrySuccess(data) {
+        modal.modal('hide');
+        table.draw();
+    }
+
+    function editCountryValidationErrors(data) {
+        $("#modal").html(data.View);
+        applyUiErrorStylesIfAny();
+    }
+
+</script>
+
+@using (Ajax.CustomBeginForm("EditCountry", "editCountry", new { role = "form", @class = "form" }))
+{
+    <div class="modal-body">
+
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <label for="name">@Region.CountryName</label>
+            <input type="text" id="name" name="name" value="@Model.Name" class="form-control" placeholder="@Region.EnterCountryName" />
+            @Html.ValidationMessage("name", new { @class = "control-label" })
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Localized.Close</button>
+        <button type="submit" class="btn btn-primary delete">@Localized.Save</button>
+    </div>
+}

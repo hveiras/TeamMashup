@@ -1,0 +1,78 @@
+﻿@using TeamMashup.Core.I18n
+
+@{
+    ViewBag.Title = "Backup";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+
+    $(document).ready(function () {
+
+        table = new TeamMashupDataTable({
+            tableId: "backupRequestsTable",
+            sourceUrl: '@Url.Action("GetBackupRequestItems", "Backup")',
+            columns: [
+                { "mData": "CreatedDate", "sTitle": "@Localized.Date" },
+                { "mData": "Type", "sTitle": "@Localized.Type" },
+                { "mData": "State", "sTitle": "@Localized.State" },
+                { "mData": "Schedule", "sTitle": "@Localized.Schedule" },
+                { "mData": "Path", "sTitle": "@Localized.Path" }
+            ],
+            rowsSelectable: false,
+            showEdit: false,
+            showEditInNewWindow: false,
+            showMoreOptions: false,
+            showDelete: false
+        });
+
+        setInterval(function () { table.draw(); }, 5000);
+
+    });
+
+    function scheduleBackupRequestComplete() {
+    }
+
+    function scheduleBackupRequestSuccess(data) {
+        scheduleBackupRequestContainerUpdate(data);
+        table.draw();
+    }
+
+    function scheduleBackupRequestValidationErrors(data) {
+    }
+
+    function scheduleBackupRequestContainerUpdate(data) {
+        $("#scheduleBackupRequestContainer").html(data.View);
+    }
+
+</script>
+
+<div id="backup">
+    <div class="backups">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div id="scheduleBackupRequestContainer">
+                    @{ Html.RenderAction("AddBackupRequest"); }
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-container">
+                    <table id="backupRequestsTable" class="grid-control table table-striped">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

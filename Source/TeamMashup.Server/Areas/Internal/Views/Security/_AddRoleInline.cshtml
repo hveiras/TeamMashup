@@ -1,0 +1,18 @@
+﻿@using (Ajax.BeginForm("AddRoleInline", null, new AjaxOptions { OnSuccess = "onRoleAddedInlineSuccess(data, status, xhr)", UpdateTargetId = "addRoleInlineForm" }, new { role = "form" }))
+{
+    @Html.ValidationSummary(true)
+    
+    <div class="form-group">
+        @Html.ValidationMessage("name", new { @class = "control-label" })
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="sr-only" for="name">Role name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter role name" />
+                <input type="hidden" id="scope" name="scope" value="Platform"/>
+            </div>
+            <div class="col-xs-6">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+}

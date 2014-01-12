@@ -1,0 +1,104 @@
+﻿@model TeamMashup.Models.Internal.RoleClaimsModel
+
+@{
+    ViewBag.Title = "RoleClaims";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#addButton").click(function () {
+            $("#availableClaims option:selected").appendTo("#selectedClaims");
+        });
+
+        $("#addAllButton").click(function () {
+            $("#availableClaims option").appendTo("#selectedClaims");
+        });
+
+        $("#removeButton").click(function () {
+            $("#selectedClaims option:selected").appendTo("#availableClaims");
+        });
+
+        $("#removeAllButton").click(function () {
+            $("#selectedClaims option").appendTo("#availableClaims");
+        });
+
+        $("#updateRoleClaims").click(function () {
+            
+            var roleId = '@Model.RoleId';
+            var ids = new Array();
+            $("#selectedClaims option").each(function () {
+                ids.push($(this).val());
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateRoleClaims", "Security")',
+                    dataType: "json",
+                    traditional: true,
+                    data: { roleId: roleId, claimIds: ids },
+                    success: function(data) {
+                        if(data.Success) {
+                            window.location = data.RedirectUrl;
+                        }
+                    }
+                });
+        });
+
+    });
+
+</script>
+
+<div id="accessControl">
+    <div class="roles">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", new { activeTab = "Roles" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <h4>Manage claims for role: @Model.RoleName</h4>
+
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="form-group">
+                                <label for="searchUsers">Add claims(s) to role:</label>
+                                @Html.ListBoxFor(x => x.AvailableClaims, Model.AvailableClaims, new { @class = "form-control", id = "availableClaims" })
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <br />
+                            <div class="form-group">
+                                <p>
+                                    <button id="addButton" class="btn btn-default"><b>></b></button>
+                                </p>
+                                <p>
+                                    <button id="addAllButton" class="btn btn-default"><b>>></b></button>
+                                </p>
+                                <p>
+                                    <button id="removeButton" class="btn btn-default"><b><</b></button>
+                                </p>
+                                <p>
+                                    <button id="removeAllButton" class="btn btn-default"><b><<</b></button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            
+                            <div class="form-group">
+                                <label>Selected claims</label>
+                                @Html.ListBoxFor(x => x.Claims, Model.Claims, new { @class = "form-control", id = "selectedClaims" })
+                            </div>
+
+                            <button id="updateRoleClaims" class="btn btn-primary">Save</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

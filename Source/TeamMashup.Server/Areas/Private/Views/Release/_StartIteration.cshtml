@@ -1,0 +1,35 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Private.Views.Release.i18n;
+
+@model TeamMashup.Models.Private.IterationModel
+
+@using (Ajax.CustomBeginForm("StartIteration", "startIteration", new { role = "form" }))
+{
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div class="modal-header">
+        <h4 class="modal-title">@Release.StartIterationAreYouSure <strong>"@Model.Name"</strong>?</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-warning">
+            <strong>@Release.StartIterationWarningHeader:</strong>
+            <br />
+            <br />
+            <ul>
+                <li>@Release.StartIterationAllMembersNotified.</li>
+                <li>@Release.StartIterationAllIssuesCommited.
+                    <button class="btn btn-xs btn-info"><i class="icon-question"></i></button>
+                </li>
+            </ul>
+            <br />
+            <strong>@Release.StartIterationWarningFooter.</strong>
+        </div>
+        <div class="alert alert-danger hide"></div>
+    </div>
+    <div class="modal-footer">
+        <div class="checkbox pull-left">
+            <input type="checkbox" />@Localized.DontShowMeThisAnymore
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Localized.Close</button>
+        <button type="submit" class="btn btn-success">@Localized.Start</button>
+    </div>
+}

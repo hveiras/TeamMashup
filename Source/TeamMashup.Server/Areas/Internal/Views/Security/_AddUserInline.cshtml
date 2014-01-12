@@ -1,0 +1,16 @@
+﻿@using (Ajax.BeginForm("AddUserInline", null, new AjaxOptions { OnSuccess = "onUserAddedInlineSuccess(data, status, xhr)", UpdateTargetId = "addUserInlineForm" }, new { @class = "form-inline", role = "form" }))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <label class="sr-only" for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" />
+    </div>
+
+    <div class="form-group">
+        <label class="sr-only" for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Enter name" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+}

@@ -1,0 +1,40 @@
+﻿@model TeamMashup.Models.Internal.RoleModel
+
+<script type="text/javascript">
+
+    function onRoleEditedSuccess(data, status, xhr)
+    {
+        if (status == "success") {
+
+            if (data.Success) {
+                modal.modal('hide');
+                table.draw();
+            }
+            else {
+                $("#editRoleInlineFormModal").html(data.View);
+                applyUiErrorStylesIfAny();
+            }
+
+        }
+    }
+
+</script>
+
+@using (Ajax.BeginForm("EditRole", null, new AjaxOptions { OnSuccess = "onRoleEditedSuccess(data, status, xhr)" }, new { role = "form" }))
+{
+    <div class="modal-body">
+
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <label for="name">Role name</label>
+            <input type="text" id="name" name="name" value="@Model.Name" class="form-control" placeholder="Enter role name" />
+            @Html.ValidationMessage("name", new { @class = "control-label" })
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary delete">Save</button>
+    </div>
+}

@@ -1,0 +1,99 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Public.Views.Register.i18n;
+
+@model TeamMashup.Models.Public.CreateSubscriptionModel
+@{
+    ViewBag.Title = "CreateSubscription";
+    Layout = "~/Views/Shared/_Public.cshtml";
+}
+
+<div id="register">
+    <div class="create-subscription">
+        <br />
+        <div class="container">
+            <div class="page-header container">
+                <h1>@Register.CompleteSubscriptionData</h1>
+                <small>@Register.SubscriptorAccountNote</small>
+            </div>
+            @using (Html.BeginForm("CreateSubscription", "Register", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <input type="hidden" name="planid" value="@Model.PlanId" />
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">@Localized.Email</label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" id="email" name="email" value="@Model.Email" placeholder="@Localized.Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="companyName" class="col-lg-2 control-label">@Localized.CompanyName</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="companyName" name="companyname" value="@Model.CompanyName" placeholder="@Localized.CompanyName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-lg-2 control-label">@Localized.Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="@Localized.Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="col-lg-2 control-label">@Localized.ConfirmPassword</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmpassword" placeholder="@Localized.ConfirmPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-lg-2 control-label">@Localized.Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="name" name="name" value="@Model.Name" placeholder="@Localized.Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="companyAddress" class="col-lg-2 control-label">@Localized.CompanyAddress</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="companyAddress" name="companyaddress" value="@Model.CompanyAddress" placeholder="@Localized.CompanyAddress">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="billingAddress" class="col-lg-2 control-label">@Localized.BillingAddress</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="billingAddress" name="billingaddress" value="@Model.BillingAddress" placeholder="@Localized.BillingAddress">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="countryId" class="col-lg-2 control-label">@Localized.Country</label>
+                    <div class="col-lg-10">
+                        <select id="countryId" name="countryid" class="form-control">
+                            @foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.Value">@country.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="creditCardNumber" class="col-lg-2 control-label">@Localized.CreditCardNumber</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="creditCardNumber" name="creditcardnumber" value="@Model.CreditCardNumber" placeholder="@Localized.CreditCardNumber">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="creditCardExpireDate" class="col-lg-2 control-label">@Localized.ExpireDate</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="creditCardExpireDate" name="creditcardexpiredate" value="@Model.CreditCardExpireDate" placeholder="@Localized.ExpireDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="creditCardSecurityCode" class="col-lg-2 control-label">@Localized.SecurityCode</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="creditCardSecurityCode" name="creditcardsecuritycode" value="@Model.CreditCardSecurityCode" placeholder="@Localized.SecurityCode">
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default">@Localized.Back</button>
+                    <button type="submit" class="btn btn-primary">@Localized.ConfirmRegistration</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

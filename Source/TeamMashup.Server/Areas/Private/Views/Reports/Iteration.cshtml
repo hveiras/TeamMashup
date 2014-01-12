@@ -1,0 +1,128 @@
+﻿@using TeamMashup.Core.I18n
+@using TeamMashup.Server.Areas.Private.Views.Reports.i18n
+@using TeamMashup.Core.Extensions
+
+@model TeamMashup.Models.Private.IterationReportModel
+
+@{
+    ViewBag.Title = "Iteration Report";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@{
+    var anyReleaseExists = ((object)ViewBag).Has("ReleaseId");
+    var releaseHasIterations = ((object)ViewBag).Has("IterationId");
+}
+
+@if (ViewBag.ShowReports)
+{
+    @Scripts.Render("~/bundles/reports")
+
+    <script type="text/javascript">
+
+        var datasets = {
+            "commited": {
+                label: "@Localized.Commited",
+                data: [[@Model.Commited, 0]],
+                color: "#EEE"
+            },
+            "completed": {
+                label: "@Localized.Completed",
+                data: [[@Model.Completed, 0]]
+            } 
+        };
+        
+        var data = [];
+
+        data.push(datasets["commited"]);
+        data.push(datasets["completed"]);
+
+        $(document).ready(function () {
+
+            $.plot("#progressChart", data, {
+                grid: {show: true, color: "rgb(48, 48, 48)", tickColor: "rgba(255, 255, 255, 0)", backgroundColor: "rgb(255, 255, 255)"},
+                bars: { show: true, horizontal: true, stacked: true },
+                xaxis: {min: 0, max: @Model.Commited, tickSize: 1},
+                yaxis: { show: false, min: 0, max: 1, tickSize: 1 }
+            });
+
+        });
+
+    </script>
+}
+
+<div id="reports">
+    <div class="iteration">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Reports" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @{ Html.RenderAction("NavPills", "ProjectBase", new { tab = "Reports", activePill = "Iteration" }); }
+
+                    <br />
+
+                    @if (anyReleaseExists)
+                    {
+                        @Html.Action("SelectRelease", "ProjectBase", new
+                        {
+                            releaseId = ViewBag.ReleaseId,
+                            action = "Resources",
+                            controller = "Iteration",
+                            onlyWithIterations = true
+                        })
+
+                        if (releaseHasIterations)
+                        {
+                        @Html.Action("SelectIteration", "ProjectBase", new
+                            {
+                                releaseId = ViewBag.ReleaseId,
+                                iterationId = ViewBag.IterationId,
+                                action = "Resources",
+                                controller = "Iteration"
+                            })
+                        }
+                    }
+
+                    @if (ViewBag.ShowReports)
+                    {
+                        <div id="progressChart" class="progress-chart">
+                        </div>
+                        <br />
+                        <table id="iterationReportTable" class="grid-control table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>@Localized.UserName</th>
+                                    <th>@Localized.DefinedStoryPoints</th>
+                                    <th>@Localized.InProgressStoryPoints</th>
+                                    <th>@Localized.DoneStoryPoints</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var stat in Model.UserStats)
+                                {
+                                    <tr>
+                                        <td>@stat.Item1.Name</td>
+                                        <td><span class="badge">@stat.Item2.DefinedPoints</span></td>
+                                        <td><span class="badge">@stat.Item2.InProgressPoints</span></td>
+                                        <td><span class="badge">@stat.Item2.DonePoints</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning fixed-w-500 container">
+                            <strong>@Reports.NoActiveIteration
+                            </strong>
+                            <a href="@Url.RouteUrl("Private_project_plan", new { tenant = ViewBag.TenantName, projectname = ViewBag.ProjectName, controller = "Release", action = "Plan" })" class="alert-link">@Reports.YouShouldStartOneFirst</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Private.Views.Reports.i18n
+
+@model TeamMashup.Models.Private.BurndownModel
+@{
+    ViewBag.Title = "Burndown";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@if (ViewBag.ShowReports)
+{
+    @Scripts.Render("~/bundles/reports")
+
+    <script type="text/javascript">
+
+        var datasets = {
+            "@Model.DataSets[0].Key": {
+                label: "@Model.DataSets[0].Label",
+                data: @Model.DataSets[0].Data
+            },
+            "@Model.DataSets[1].Key": {
+                label: "@Model.DataSets[1].Label",
+                data: @Model.DataSets[1].Data
+            } 
+        };
+        
+        var data = [];
+
+        data.push(datasets["@Model.DataSets[0].Key"]);
+        data.push(datasets["@Model.DataSets[1].Key"]);
+
+        $(document).ready(function () {
+
+            $.plot("#burndownChart", data, {
+                xaxis: { mode: "time" },
+                minTickSize: [1, "day"]
+            });
+
+        });
+
+    </script>
+}
+
+<div id="reports">
+    <div class="burndown">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Reports" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @{ Html.RenderAction("NavPills", "ProjectBase", new { tab = "Reports", activePill = "Burndown" }); }
+
+                    <br />
+
+                    @if (ViewBag.ShowReports)
+                    {
+                        <div id="burndownChart" class="chart">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning fixed-w-500 container">
+                            <strong>@Reports.NoActiveIteration
+                            </strong>
+                            <a href="@Url.RouteUrl("Private_project_plan", new { tenant = ViewBag.TenantName, projectname = ViewBag.ProjectName, controller = "Release", action = "Plan" })" class="alert-link">@Reports.YouShouldStartOneFirst</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

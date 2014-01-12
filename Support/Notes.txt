@@ -1,0 +1,22 @@
+1. Conectarse con el usuario Integrado.
+2. Crear la base de datos TeamMashup.
+3. Habilitar la conexión para permitir conexiones con usuarios de SQL.
+4. Crear el Usuario de SQL a nivel del server (asignar permisos de Owner y DB Creator)
+5. Crear el Usuario de SQL a nivel de la base de datos (asignar permisos de Owner y DB Creator)
+6. Conectarse con el usuario de SQL
+7. Modificar los permisiso del usuario hasta que sea creator sobre la base TeamMashup.
+8. Correr el Test de creación de base de datos habiendo cambiado previamente el string de conexion.
+
+Asegurarse de NO estar apuntando a SQLEXPRESS en el config.
+
+Problemas a revisar
+
+
+- Ver porque en el deploy de Internal quedo una versión de WebGrease vieja.
+- Los roles de los tenant se estan mostrando en el Backend cuando solo deberian mostrase los de Platform.
+- Hay que hacer cambios en el chat client para que esté disponible en todas las vistas.
+- Hacer que el parche de download fonts de IE sea un patch de registro.
+
+Problemas de cacheo
+
+http://localhost:8080/Security/RoleMembers?roleId=1

@@ -1,0 +1,132 @@
+﻿@using TeamMashup.Core.I18n
+@using TeamMashup.Core.Extensions;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+@{
+    var anyReleaseExists = ((object)ViewBag).Has("ReleaseId");
+}
+
+@if (anyReleaseExists)
+{
+    <script type="text/javascript">
+
+        var table;
+        var modal;
+
+        $(document).ready(function () {
+
+            modal = $('#modal');
+
+            table = new TeamMashupDataTable({
+                tableId: "iterationsTable",
+                sourceUrl: '@Url.Action("GetIterations", new { releaseId = ViewBag.ReleaseId })',
+                columns: [
+                   { "mData": "Name", "sTitle": "@Localized.Name" },
+                   { "mData": "State", "sTitle": "@Localized.State" },
+                   { "mData": "From", "sTitle": "@Localized.From" },
+                   { "mData": "To", "sTitle": "@Localized.To" }
+                ],
+                deleteUrl: '@Url.Action("Delete")',
+                onItemDelete: function (id) {
+                    handleRowDelete({
+                        ids: [id],
+                        modalId: 'modal',
+                        modal: modal,
+                        displayAction: '@Url.Action("Delete")?id=' + id + '&_=' + $.now(),
+                        //deleteAction: '@Url.Action("Delete")'
+                    });
+                },
+                onItemEdit: function (id, newWindow) {
+                    var url = '@Url.Action("Edit")?id=' + id;
+                    if (newWindow) {
+                        window.open(url);
+                    }
+                    else {
+                        window.location = url;
+                    }
+                },
+                reorderRows: false
+            });
+        });
+
+        function addIterationInlineComplete() {
+        }
+
+        function addIterationInlineSuccess(data) {
+            addIterationInlineContainerUpdate(data);
+            table.draw();
+        }
+
+        function addIterationInlineValidationErrors(data) {
+            addIterationInlineContainerUpdate(data);
+            applyUiErrorStylesIfAny();
+        }
+
+        function addIterationInlineContainerUpdate(data) {
+            $("#addIterationInlineContainer").html(data.View);
+        }
+
+    </script>
+}
+
+<div id="plan">
+    <div class="iterations">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Plan" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @{ Html.RenderAction("NavPills", "ProjectBase", new { tab = "Plan", activePill = "Iterations" }); }
+
+                    <br />
+
+                    @if (anyReleaseExists)
+                    {
+                        Html.RenderAction("SelectRelease", "ProjectBase", new { releaseId = ViewBag.ReleaseId, action = "Index", controller = "Iteration" });
+
+                        <br />
+                        <br />
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div id="addIterationInlineContainer">
+                                    @{ Html.RenderAction("AddIterationInline", new { releaseId = ViewBag.ReleaseId }); }
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-container">
+                                    <table id="iterationsTable" class="grid-control table table-striped">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <strong>@Localized.ThereIsNoActiveRelease
+                            </strong>
+                            @Localized.YouCan <a href="@Url.Action("Index", "Release")" class="alert-link">@Localized.CreateANewOne</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog">
+</div>

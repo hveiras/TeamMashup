@@ -1,0 +1,6 @@
+﻿@using TeamMashup.Server.Areas.Internal.Views.Backup.i18n
+
+@using (Ajax.CustomBeginForm("ScheduleBackupRequest", "scheduleBackupRequest", new { role = "form", @class = "form-inline" }))
+{
+    <button type="submit" class="btn btn-primary">@Backup.ScheduleNow</button>
+}

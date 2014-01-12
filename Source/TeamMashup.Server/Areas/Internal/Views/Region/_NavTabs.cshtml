@@ -1,0 +1,6 @@
+﻿@{ var activeTab = ViewBag.ActiveTab; }
+
+<ul class="nav nav-tabs">
+    <li id="countriesTab" class="@Html.Raw(activeTab == "Countries" ? "active" : string.Empty)"><a href="@Url.Action("Countries", "Region")">Countries</a></li>
+    <li id="languagesTab" class="@Html.Raw(activeTab == "Languages" ? "active" : string.Empty)"><a href="@Url.Action("Languages", "Region")">Languages</a></li>
+</ul>

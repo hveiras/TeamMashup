@@ -1,0 +1,63 @@
+﻿@using System.Web.Optimization
+@using TeamMashup.Core.I18n;
+
+@{
+    ViewBag.Title = "Subscriptions";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+
+    $(document).ready(function () {
+        table = new TeamMashupDataTable({
+            tableId: "subscriptionsTable",
+            sourceUrl: '@Url.Action("GetSubscriptions", "Billing")',
+            columns: [
+                {
+                    "mData": "TenantName",
+                    "sTitle": "@Localized.TenantName",
+                    "mRender": function (data, type, full) {
+                        return "<a href='@Url.Action("Details")?tenantName=" + data + "'>" + data + "</a>";
+                    }
+                },
+                { "mData": "CompanyName", "sTitle": "@Localized.CompanyName" },
+                { "mData": "PlanName", "sTitle": "@Localized.Plan" },
+                { "mData": "CountryName", "sTitle": "@Localized.Country" },
+                { "mData": "State", "sTitle": "@Localized.State" },
+                { "mData": "HasPendingBills", "sTitle": "@Localized.HasPendingBills" }
+            ],
+            rowsSelectable: false,
+            showEdit: false,
+            showEditInNewWindow: false,
+            showDelete: false,
+            showMoreOptions: false,
+            enableSearch: true,
+        });
+
+    });
+
+</script>
+
+<div id="billing">
+    <div class="subscriptions">
+
+        <div class="page-header">
+            <h3>@Localized.Subscriptions</h3>
+        </div>
+
+        <div class="table-container">
+            <table id="subscriptionsTable" class="grid-control table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Internal.Views.Billing.i18n;
+
+@model TeamMashup.Models.Internal.BillingDetailsModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<div id="billing">
+    <div class="details">
+
+        <div class="page-header">
+            <h3>@BIlling.DetailsTitle @Model.TenantName</h3>
+        </div>
+
+        <div class="table-container">
+            <table id="billsTable" class="grid-control table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@Localized.Date</th>
+                        <th>@Localized.TributaryId</th>
+                        <th>@Localized.CustomerName</th>
+                        <th>@Localized.CustomerAddress</th>
+                        <th>@Localized.CountryName</th>
+                        <th>@Localized.Items</th>
+                        <th>@Localized.Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bill in Model.Bills)
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("Bill", "Billing", new { id = bill.Id })" class="btn btn-default"><i class="icon-print"></i></a></td>
+                            <td>@bill.Date</td>
+                            <td>@bill.TributaryId</td>
+                            <td>@bill.CustomerName</td>
+                            <td>@bill.CustomerAddress</td>
+                            <td>@bill.CountryName</td>
+                            <td>
+                                <ul>
+                                    @foreach (var item in bill.Items)
+                                    {
+                                        <li>@item.Description</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>@bill.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

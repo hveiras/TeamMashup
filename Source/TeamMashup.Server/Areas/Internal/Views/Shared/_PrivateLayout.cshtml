@@ -1,0 +1,128 @@
+﻿@using System.Web.Optimization
+
+<!DOCTYPE html>
+<html id="internal" lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/teammashup")
+
+    @Styles.Render("~/Content/styles")
+
+    <script type="text/javascript">
+
+        $(function () {
+            window.hubReady = $.connection.hub.start();
+        });
+
+        $(document).ready(function () {
+
+            applyUiErrorStylesIfAny();
+
+            @if (ViewBag.ShowChatCollapsed)
+            {
+                <text>
+                $("#toggleChat").click(function (event) {
+
+                    event.preventDefault();
+                    var trigger = $(this);
+                    var popover = $("#chatPopover");
+
+                    setChatPopoverPosition(popover, trigger);
+
+                    popover.toggle();
+
+                });
+
+                $(window).resize(function () {
+                    var trigger = $("#toggleChat");
+                    var popover = $("#chatPopover");
+
+                    setChatPopoverPosition(popover, trigger);
+                });
+                </text>
+            }
+
+        });
+
+    </script>
+
+</head>
+
+<body class="private">
+    <div id="page">
+        <header id="header" role="banner">
+            <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index", "Dashboard")">
+                        <img src="~/Content/images/brand.png" alt="Team Mashup" />
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown @Html.VisibleIfHasClaims("manage-security")">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Security <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Roles", "Security")">Manage Roles</a></li>
+                                <li><a href="@Url.Action("Users", "Security")">Manage Users</a></li>
+                                <li><a href="@Url.Action("Claims", "Security")">Manage Claims</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Platform <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("LogViewer", "Tracking")" class="@Html.VisibleIfHasClaims("read-log")">Log Viewer</a></li>
+                                <li><a href="@Url.Action("Backups", "Backup")">Backups</a></li>
+                                <li><a href="@Url.Action("Countries", "Region")">Regions</a></li>
+                                <li><a href="@Url.Action("Surveys", "Survey")">Surveys</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown @Html.VisibleIfHasClaims("manage-billing")">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Billing <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Billing")">Subscriptions</a></li>
+                                <li><a href="@Url.Action("Reports", "Billing")">Reports</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    @*                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>*@
+                    <ul class="nav navbar-nav navbar-right">
+                        @{Html.RenderAction("AccountMenu"); }
+                        @if (ViewBag.ShowChatCollapsed)
+                        {
+                            <li id="toggleChat"><a href="#"><i class="icon-torso icon-chat-online"></i><b class="caret"></b></a></li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <section id="content" role="main">
+            @RenderBody()
+        </section>
+        <footer id="footer" role="contentinfo">
+        </footer>
+    </div>
+    @if (ViewBag.ShowChatCollapsed)
+    {
+        <div id="chatPopover" class="popover bottom fixed-w-350" data-for="toggleChat" style="height: 500px">
+            <div class="arrow"></div>
+            <div class="popover-content">
+                @{Html.RenderAction("ChatClient");}
+            </div>
+        </div>
+    }
+</body>
+</html>

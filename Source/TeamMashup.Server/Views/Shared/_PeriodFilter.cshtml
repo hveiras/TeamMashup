@@ -1,0 +1,45 @@
+﻿@using System.Web.Optimization
+@using TeamMashup.Core.I18n
+
+@Scripts.Render("~/bundles/moment")
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#periodFilter li").click(function (event) {
+            event.preventDefault();
+            resetAllFilters();
+            $(this).addClass("active");
+
+            var period = $(this).data("period");
+            var subtract = $(this).data("subtract");
+
+            var dateFrom = moment().subtract(period + "s", subtract);
+            var dateTo = moment().subtract(period + "s", subtract);
+
+            if (onFilterApplied != null) {
+                onFilterApplied(dateFrom.startOf(period), dateTo.endOf(period));
+            }
+        });
+
+        function resetAllFilters() {
+            $("#periodFilter li").each(function () {
+                $(this).removeClass("active");
+            });
+        }
+
+    });
+
+</script>
+
+<ul id="periodFilter" class="nav nav-pills">
+  <li data-period="day" data-subtract="0"><a href="#">@Localized.Today</a></li>
+  <li data-period="day" data-subtract="1"><a href="#">@Localized.Yesterday</a></li>
+  <li data-period="week" data-subtract="0"><a href="#">@Localized.ThisWeek</a></li>
+  <li data-period="week" data-subtract="1"><a href="#">@Localized.LastWeek</a></li>
+  <li data-period="month" data-subtract="0" class="active"><a href="#">@Localized.ThisMonth</a></li>
+  <li data-period="month" data-subtract="1"><a href="#">@Localized.LastMonth</a></li>
+  <li data-period="year" data-subtract="0"><a href="#">@Localized.ThisYear</a></li>
+  <li data-period="year" data-subtract="1"><a href="#">@Localized.LastYear</a></li>
+</ul>

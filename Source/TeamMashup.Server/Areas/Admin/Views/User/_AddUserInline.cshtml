@@ -1,0 +1,17 @@
+﻿@using (Ajax.BeginForm("AddUserInline", null, new AjaxOptions { OnSuccess = "onUserAddedInlineSuccess(data, status, xhr)", UpdateTargetId = "addUserInlineForm" }, new { @class = "form-inline", role = "form" }))
+{   
+    <div class="form-group">
+        <label class="sr-only" for="username">Username</label>
+        <input type="text" id="username" name="username" class="form-control fixed-w-200" placeholder="Enter username" />
+        @Html.ValidationPopover("username")
+    </div>
+    <label class="form-control-static">@Html.Raw("@")@ViewBag.EmailDomain</label>
+    <span>&nbsp;</span>
+    <div class="form-group">
+        <label class="sr-only" for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control fixed-w-200" placeholder="Enter name" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+
+}

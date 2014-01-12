@@ -1,0 +1,22 @@
+﻿@using TeamMashup.Core.I18n;
+
+@model IEnumerable<SelectListItem>
+@if (Model.Any())
+{
+    var selectedItem = Model.Single(x => x.Selected);
+    var nonSelectedItems = Model.Where(x => !x.Selected).ToList();
+
+
+    <div class="btn-group">
+        <button class="btn">@selectedItem.Text</button>
+        <button class="btn dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var item in nonSelectedItems)
+            {
+                <li><a href="@Url.Action(ViewBag.Action, ViewBag.Controller, new { releaseId = ViewBag.ReleaseId, iterationId = item.Value})">@item.Text</a></li>
+            }
+        </ul>
+    </div>
+}

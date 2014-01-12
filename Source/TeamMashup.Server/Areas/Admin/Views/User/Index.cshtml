@@ -1,0 +1,97 @@
+﻿@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal
+
+    $(document).ready(function () {
+
+        modal = $("#modal");
+
+        table = new TeamMashupDataTable({
+            tableId: "usersTable",
+            sourceUrl: '@Url.Action("GetUserItems")',
+            columns: [
+                { "mData": "Name", "sTitle": "Name" },
+                { "mData": "Email", "sTitle": "Email" },
+                {
+                    "mData": null,
+                    "sTitle": "",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<a href='@Url.Action("UserRoles")?userId=" + table.getOriginalId(full.DT_RowId) + "'>Manage Roles</a>";
+                    }
+                }
+            ],
+            deleteUrl: '@Url.Action("Delete")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("Delete")?id=' + id + '&_=' + $.now(),
+                    //deleteAction: '@Url.Action("Delete")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+
+                //modal = $('#editUserInlineFormModal');
+
+                modal.load('@Url.Action("EditUser")?userId=' + id + '&_=' + $.now(), function () {
+                    modal.modal();
+                });
+            },
+            onDraw: function () {
+                bindJsModals();
+            },
+            showEditInNewWindow: false,
+            showMoreOptions: false
+        });
+
+    });
+
+    function onUserAddedInlineSuccess(data, status, xhr) {
+
+        if (status == "success") {
+            applyUiErrorStylesIfAny();
+            table.draw();
+        }
+
+    }
+
+</script>
+
+<div id="admin">
+    <div class="users">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div id="addUserInlineForm">
+                    @{ Html.RenderAction("AddUserInline"); }
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-container">
+                    <table id="usersTable" class="grid-control table table-striped">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog">
+</div>

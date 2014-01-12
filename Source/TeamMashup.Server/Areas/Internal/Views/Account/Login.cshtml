@@ -1,0 +1,42 @@
+﻿@using TeamMashup.Core.I18n;
+
+@model TeamMashup.Models.Internal.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Internal/Views/Shared/_PublicLayout.cshtml";
+}
+
+<div id="account">
+    <div class="login">
+        <div class="container well fixed-w-500">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    <label for="email" class="col-md-2">@Localized.Email</label>
+                    <div class="col-md-10">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="@Localized.EnterYourEmail" />
+                        @Html.ValidationMessage("email", new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-md-2">@Localized.Password</label>
+                    <div class="col-md-10">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="@Localized.EnterPassword" />
+                        @Html.ValidationMessage("password", new { @class = "control-label" })
+                    </div>
+                </div>
+                <label class="checkbox" for="RememberMe">
+                    @Localized.RememberMe
+                    @Html.EditorFor(m => m.RememberMe)
+                </label>
+
+                <br />
+                
+                <button type="submit" class="btn btn-primary">@Localized.Login</button>
+            }
+        </div>
+    </div>
+</div>

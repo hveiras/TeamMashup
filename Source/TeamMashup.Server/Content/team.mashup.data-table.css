@@ -1,0 +1,208 @@
+﻿.grid-control thead tr th, .grid-control tbody tr td {
+    text-align: left;
+}
+
+.grid-control tbody tr {
+    border-bottom: 1px solid #DDDDDD !important;
+}
+
+.grid-control .grid-icon {
+    font-size: 11pt !important;
+    padding-left: 0;
+}
+
+.grid-control .grid-field-20 {
+    width: 20px !important;
+}
+
+.grid-control .grid-field-40 {
+    width: 40px !important;
+}
+
+.grid-control .grid-field-100 {
+    width: 100px !important;
+}
+
+.grid-control .grid-field-120 {
+    width: 120px !important;
+}
+
+.grid-control .grid-field-150 {
+    width: 150px !important;
+}
+
+.grid-control .grid-field-250 {
+    width: 250px !important;
+}
+
+.grid-control .row-defect {
+    border-left: 2px solid red;
+}
+
+.grid-control .row-userstory {
+    border-left: 2px solid green;
+}
+
+.grid-control .ui-sortable tr {
+    cursor:move;
+}
+
+/* Start of Datatables.net overrides */
+
+/*table.dataTable tr.odd {
+    background-color: #fff !important;
+}
+
+table.dataTable tr.even {
+    background-color: #fff !important;
+}*/
+
+table.dataTable tr.odd td.sorting_1 {
+    background-color: #F9F9F9 !important;
+}
+
+table.dataTable tr.even td.sorting_1 {
+    background-color: #fff !important;
+}
+
+table.dataTable tr.odd td.sorting_2 { 
+    background-color: #F9F9F9 !important;
+}
+
+table.dataTable tr.even td.sorting_2 { 
+    background-color: #fff !important;
+}
+
+table.dataTable thead th {
+    border-bottom: none !important;
+}
+
+
+/*
+ * Pagination
+ */
+.dataTables_paginate {
+    margin: 25px 0;
+}
+
+/* Two button pagination - previous / next */
+.paginate_disabled_previous,
+.paginate_enabled_previous,
+.paginate_disabled_next,
+.paginate_enabled_next {
+    height: 19px;
+    float: left;
+    cursor: pointer;
+    *cursor: hand;
+    color: #111 !important;
+}
+
+.paginate_disabled_previous:hover,
+.paginate_enabled_previous:hover,
+.paginate_disabled_next:hover,
+.paginate_enabled_next:hover {
+    text-decoration: none !important;
+}
+
+.paginate_disabled_previous:active,
+.paginate_enabled_previous:active,
+.paginate_disabled_next:active,
+.paginate_enabled_next:active {
+    outline: none;
+}
+
+.paginate_disabled_previous,
+.paginate_disabled_next {
+    color: #666 !important;
+}
+
+.paginate_disabled_previous,
+.paginate_enabled_previous {
+    padding-left: 23px;
+}
+
+.paginate_disabled_next,
+.paginate_enabled_next {
+    padding-right: 23px;
+    margin-left: 10px;
+}
+
+.paginate_enabled_previous {
+    background: url('../images/back_enabled.png') no-repeat top left;
+}
+
+.paginate_enabled_previous:hover {
+    background: url('../images/back_enabled_hover.png') no-repeat top left;
+}
+
+.paginate_disabled_previous {
+    background: url('../images/back_disabled.png') no-repeat top left;
+}
+
+.paginate_enabled_next {
+    background: url('../images/forward_enabled.png') no-repeat top right;
+}
+
+    .paginate_enabled_next:hover {
+        background: url('../images/forward_enabled_hover.png') no-repeat top right;
+    }
+
+.paginate_disabled_next {
+    background: url('../images/forward_disabled.png') no-repeat top right;
+}
+
+/* Full number pagination */
+.paging_full_numbers {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    margin-left: 0;
+    margin-bottom: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.paging_full_numbers a:active {
+    outline: none;
+}
+
+.paging_full_numbers a:hover {
+    text-decoration: none;
+}
+
+.paging_full_numbers a.paginate_button,
+.paging_full_numbers a.paginate_active {
+    border: 1px solid #AAAAAA;
+    border-radius: 0 !important;
+    color: #333333 !important;
+    cursor: pointer;
+    margin: 0 3px;
+    padding: 2px 5px;
+}
+
+.paging_full_numbers a.paginate_button {
+    float: left;
+    padding: 4px 12px;
+    line-height: 25px;
+    text-decoration: none;
+    background-color: #ffffff !important;
+    border: 1px solid #dddddd;
+    border-left-width: 0;
+}
+
+.paging_full_numbers a.paginate_button:hover {
+    background-color: #ccc;
+    text-decoration: none !important;
+}
+
+.paging_full_numbers a.paginate_active {
+    background-color: #eee !important;
+    float: left;
+}
+
+/* End of Datatables.net overrides */

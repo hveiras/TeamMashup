@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C1191F8-1C60-4CA7-A9B6-4D4B61340ACB}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeamMashup.Server</RootNamespace>
+    <AssemblyName>TeamMashup.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>true</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.1.1.3\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Owin.1.1.3\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.1.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.1.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.2.0.1.2\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.3\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=2.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.13\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.13\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.13\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.13\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.3\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\..\packages\Microsoft.Bcl.1.1.3\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProjectController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Internal\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Internal\Controllers\BackupController.cs" />
+    <Compile Include="Areas\Internal\Controllers\InternalBaseController.cs" />
+    <Compile Include="Areas\Internal\Controllers\BillingController.cs" />
+    <Compile Include="Areas\Internal\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Internal\Controllers\RegionController.cs" />
+    <Compile Include="Areas\Internal\Controllers\SecurityController.cs" />
+    <Compile Include="Areas\Internal\Controllers\SurveyController.cs" />
+    <Compile Include="Areas\Internal\Controllers\TrackingController.cs" />
+    <Compile Include="Areas\Internal\Views\Backup\i18n\Backup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Backup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Internal\Views\Backup\i18n\Backup.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Backup.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Internal\Views\Billing\i18n\BIlling.Designer.cs">
+      <DependentUpon>BIlling.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Areas\Internal\Views\Billing\i18n\Billing.es.Designer.cs">
+      <DependentUpon>Billing.es.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Areas\Internal\Views\Region\i18n\Region.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Region.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Internal\Views\Region\i18n\Region.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Region.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Internal\Views\Survey\i18n\Survey.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Survey.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Controllers\ReportsController.cs" />
+    <Compile Include="Areas\Private\Views\Issue\i18n\Issue.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Issue.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Issue\i18n\Issue.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Issue.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Iteration\i18n\Iteration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Iteration.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Iteration\i18n\Iteration.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Iteration.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Release\i18n\Release.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Release.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Release\i18n\Release.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Release.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Reports\i18n\Reports.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reports.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Work\i18n\Work.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Work.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Private\Views\Work\i18n\Work.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Work.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Public\Controllers\PublicBaseController.cs" />
+    <Compile Include="Areas\Public\Views\Home\i18n\Home.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Home.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Public\Views\Home\i18n\Home.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Home.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Public\Views\Register\i18n\Register.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Register.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Public\Views\Register\i18n\Register.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Register.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\TenantBaseController.cs" />
+    <Compile Include="Areas\Private\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Private\Controllers\BacklogController.cs" />
+    <Compile Include="Areas\Private\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Private\Controllers\IssueController.cs" />
+    <Compile Include="Areas\Private\Controllers\IterationController.cs" />
+    <Compile Include="Areas\Private\Controllers\ReleaseController.cs" />
+    <Compile Include="Areas\Private\Controllers\WorkController.cs" />
+    <Compile Include="Areas\Private\PrivateAreaRegistration.cs" />
+    <Compile Include="Areas\Private\ProjectBaseController.cs" />
+    <Compile Include="Areas\Public\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Public\Controllers\RegisterController.cs" />
+    <Compile Include="Areas\Public\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Areas\Internal\InternalAreaRegistration.cs" />
+    <Compile Include="Extensions\AjaxHelperExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\HttpResponseBaseExtensions.cs" />
+    <Compile Include="Extensions\ViewDataExtensions.cs" />
+    <Compile Include="Filters\CustomHandleErrorAttribute.cs" />
+    <Compile Include="Filters\NoCacheAttribute.cs" />
+    <Compile Include="Filters\SetResponseStatusAttribute.cs" />
+    <Compile Include="Filters\WebAuthorizeAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HttpStatusCodeExtended.cs" />
+    <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Models\DeleteModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\bootstrap\bootstrap-modal-bs3patch.css" />
+    <Content Include="Content\bootstrap\bootstrap-modal.css" />
+    <Content Include="Content\bootstrap\bootstrap-overrides.css" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\datepicker.css" />
+    <Content Include="Content\DataTables-1.9.4\docs\media\css\doc.css" />
+    <Content Include="Content\DataTables-1.9.4\docs\media\css\shCore.css" />
+    <Content Include="Content\DataTables-1.9.4\docs\media\css\shThemeDataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\docs\media\images\arrow.jpg" />
+    <Content Include="Content\DataTables-1.9.4\docs\media\images\arrow.png" />
+    <Content Include="Content\DataTables-1.9.4\docs\media\images\extended.png" />
+    <Content Include="Content\elusive-webfont.css" />
+    <Content Include="Content\Images\brand.png" />
+    <Content Include="Content\Images\home-screenshot-01.png" />
+    <Content Include="Content\Images\home-screenshot-02.png" />
+    <Content Include="Content\Images\isologo-big-white.png" />
+    <Content Include="Content\Images\user-placeholder-30x30.jpg" />
+    <Content Include="Content\Images\user-placeholder-50x50.jpg" />
+    <Content Include="Content\team.mashup.data-table.css" />
+    <Content Include="Content\typeahead.css" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extensions\fnReloadAjax.js" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\css\AutoFill.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\docs\media\css\doc.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\docs\media\css\shCore.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\docs\media\css\shThemeDataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\docs\media\images\arrow.jpg" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\docs\media\images\arrow.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\docs\media\images\extended.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\AutoFill\media\images\filler.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\css\ColReorder.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\docs\media\css\doc.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\docs\media\css\shCore.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\docs\media\css\shThemeDataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\docs\media\images\arrow.jpg" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\docs\media\images\arrow.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\docs\media\images\extended.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColReorder\media\images\insert.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\css\ColVis.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\css\ColVisAlt.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\docs\media\css\doc.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\docs\media\css\shCore.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\docs\media\css\shThemeDataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\docs\media\images\arrow.jpg" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\docs\media\images\arrow.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\docs\media\images\extended.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\ColVis\media\images\button.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\FixedColumns\docs\media\css\doc.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\FixedColumns\docs\media\css\shCore.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\FixedColumns\docs\media\css\shThemeDataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\FixedColumns\docs\media\images\arrow.jpg" />
+    <Content Include="Content\DataTables-1.9.4\extras\FixedColumns\docs\media\images\arrow.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\FixedColumns\docs\media\images\extended.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\css\dataTables.scroller.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\docs\media\css\doc.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\docs\media\css\shCore.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\docs\media\css\shThemeDataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\docs\media\images\arrow.jpg" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\docs\media\images\arrow.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\docs\media\images\extended.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\Scroller\media\images\loading-background.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\css\TableTools.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\css\TableTools_JUI.css" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\background.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\collection.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\collection_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\copy.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\copy_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\csv.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\csv_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\pdf.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\pdf_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\print.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\print_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\xls.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\xls_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\swf\copy_csv_xls.swf" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Content\DataTables-1.9.4\media\css\demo_page.css" />
+    <Content Include="Content\DataTables-1.9.4\media\css\demo_table.css" />
+    <Content Include="Content\DataTables-1.9.4\media\css\demo_table_jui.css" />
+    <Content Include="Content\DataTables-1.9.4\media\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables-1.9.4\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables-1.9.4\media\images\back_disabled.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\back_enabled.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\back_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\favicon.ico" />
+    <Content Include="Content\DataTables-1.9.4\media\images\forward_disabled.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\forward_enabled.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\forward_enabled_hover.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\sort_asc.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\sort_both.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\sort_desc.png" />
+    <Content Include="Content\DataTables-1.9.4\media\images\sort_desc_disabled.png" />
+    <Content Include="Content\fonts\Elusive-Icons.svg" />
+    <Content Include="Content\Images\arrow-down-white.png" />
+    <Content Include="Content\Images\cancel-20x20.png" />
+    <Content Include="Content\Images\corvalius-logo.png" />
+    <Content Include="Content\Images\daniel-profile.png" />
+    <Content Include="Content\Images\group-placeholder.png" />
+    <Content Include="Content\Images\home-screenshot.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\project-placeholder-100x100.png" />
+    <Content Include="Content\Images\project-placeholder-150x150.png" />
+    <Content Include="Content\Images\santiago-profile.png" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap-modal.js" />
+    <Content Include="Scripts\bootstrap-modalmanager.js" />
+    <Content Include="Scripts\DataTables-1.9.4\docs\media\js\doc.js" />
+    <Content Include="Scripts\DataTables-1.9.4\docs\media\js\jquery.js" />
+    <Content Include="Scripts\DataTables-1.9.4\docs\media\js\shBrushJScript.js" />
+    <Content Include="Scripts\DataTables-1.9.4\docs\media\js\shCore.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\docs\media\js\doc.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\docs\media\js\jquery.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\docs\media\js\shBrushJScript.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\docs\media\js\shCore.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\js\AutoFill.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\js\AutoFill.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\docs\media\js\doc.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\docs\media\js\jquery.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\docs\media\js\shBrushJScript.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\docs\media\js\shCore.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\js\ColReorder.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\js\ColReorder.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\docs\media\js\doc.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\docs\media\js\jquery.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\docs\media\js\shBrushJScript.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\docs\media\js\shCore.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\js\ColVis.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\js\ColVis.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\docs\media\js\doc.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\docs\media\js\jquery.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\docs\media\js\shBrushJScript.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\docs\media\js\shCore.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\media\js\FixedColumns.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\media\js\FixedColumns.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\docs\media\js\doc.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\docs\media\js\jquery.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\docs\media\js\shBrushJScript.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\docs\media\js\shCore.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\js\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\js\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\TableTools\media\js\TableTools.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\TableTools\media\js\TableTools.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\TableTools\media\js\TableTools.min.js.gz" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\Scroller\media\js\dataTables.scroller.min.js.gz" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\FixedColumns\media\js\FixedColumns.min.js.gz" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColVis\media\js\ColVis.min.js.gz" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\ColReorder\media\js\ColReorder.min.js.gz" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\AutoFill\media\js\AutoFill.min.js.gz" />
+    <Content Include="Content\DataTables-1.9.4\media\images\Sorting icons.psd" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\printer.psd" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\file_types.psd" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\copy document.psd" />
+    <Content Include="Content\DataTables-1.9.4\extras\TableTools\media\images\psd\collection.psd" />
+    <Content Include="Scripts\DataTables-1.9.4\extras\TableTools\media\js\ZeroClipboard.js" />
+    <Content Include="Scripts\DataTables-1.9.4\media\js\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables-1.9.4\media\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables-1.9.4\media\js\jquery.js" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Admin\Views\User\_AddUserInline.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UserRoles.cshtml" />
+    <Content Include="Areas\Private\Views\ProjectBase\_NavTabs.cshtml" />
+    <Content Include="Areas\Private\Views\ProjectBase\_NavPills.cshtml" />
+    <Content Include="Areas\Private\Views\Backlog\_AddIssueInline.cshtml" />
+    <Content Include="Areas\Private\Views\Release\_AddReleaseInline.cshtml" />
+    <Content Include="Areas\Private\Views\Iteration\_AddIterationInline.cshtml" />
+    <Content Include="Areas\Private\Views\Iteration\Resources.cshtml" />
+    <Content Include="Areas\Private\Views\Release\Plan.cshtml" />
+    <Content Include="Areas\Private\Views\Work\Board.cshtml" />
+    <Content Include="Areas\Private\Views\Release\_StartIteration.cshtml" />
+    <Content Include="Areas\Private\Views\Issue\Issue.cshtml" />
+    <Content Include="Areas\Private\Views\Account\Account.cshtml" />
+    <Content Include="Areas\Public\Views\Register\CreateSubscription.cshtml" />
+    <Content Include="Areas\Public\Views\Register\Congratulations.cshtml" />
+    <Content Include="Areas\Internal\Views\Web.config" />
+    <Content Include="Areas\Internal\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Internal\Views\Billing\Details.cshtml" />
+    <Content Include="Areas\Internal\Views\Billing\Subscriptions.cshtml" />
+    <Content Include="Areas\Internal\Views\Dashboard\_AddComment.cshtml" />
+    <Content Include="Areas\Internal\Views\Dashboard\Dashboard.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_AddClaimInline.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_AddRoleInline.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_AddUserInline.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_EditClaim.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_EditRole.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_EditUser.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\_NavTabs.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\Claims.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\RoleClaims.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\RoleMembers.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\Roles.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\UserRoles.cshtml" />
+    <Content Include="Areas\Internal\Views\Security\Users.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_AccountMenu.cshtml" />
+    <Content Include="Scripts\flot\excanvas.js" />
+    <Content Include="Scripts\flot\excanvas.min.js" />
+    <Content Include="Scripts\flot\jquery.colorhelpers.js" />
+    <Content Include="Scripts\flot\jquery.colorhelpers.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.canvas.js" />
+    <Content Include="Scripts\flot\jquery.flot.canvas.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.categories.js" />
+    <Content Include="Scripts\flot\jquery.flot.categories.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\flot\jquery.flot.crosshair.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.errorbars.js" />
+    <Content Include="Scripts\flot\jquery.flot.errorbars.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Scripts\flot\jquery.flot.fillbetween.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.image.js" />
+    <Content Include="Scripts\flot\jquery.flot.image.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.js" />
+    <Content Include="Scripts\flot\jquery.flot.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.navigate.js" />
+    <Content Include="Scripts\flot\jquery.flot.navigate.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.selection.js" />
+    <Content Include="Scripts\flot\jquery.flot.selection.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.stack.js" />
+    <Content Include="Scripts\flot\jquery.flot.stack.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.threshold.js" />
+    <Content Include="Scripts\flot\jquery.flot.threshold.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.min.js" />
+    <Content Include="Scripts\moment-with-langs.js" />
+    <Content Include="Scripts\moment-with-langs.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Views\Shared\_ChatClient.cshtml" />
+    <Content Include="Views\Shared\_ChatWindow.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_DeleteModal.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_PrivateLayout.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_PublicLayout.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Internal\Views\Tracking\LogViewer.cshtml" />
+    <Content Include="Areas\Private\Views\Home\_AddComment.cshtml" />
+    <Content Include="Areas\Private\Views\Work\_LogWork.cshtml" />
+    <Content Include="Areas\Private\Views\Work\_CloseIssue.cshtml" />
+    <Content Include="Areas\Private\Views\Reports\Burndown.cshtml" />
+    <Content Include="Areas\Internal\Views\Backup\Backups.cshtml" />
+    <Content Include="Areas\Internal\Views\Backup\_AddBackupRequest.cshtml" />
+    <Content Include="Areas\Internal\Views\Billing\Bill.cshtml" />
+    <Content Include="Areas\Internal\Views\Billing\Reports.cshtml" />
+    <Content Include="Areas\Internal\Views\Billing\ExportBilledToExcel.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\Countries.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\_NavTabs.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\_AddCountry.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\_EditCountry.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\Languages.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\_AddLanguage.cshtml" />
+    <Content Include="Areas\Internal\Views\Region\_EditLanguage.cshtml" />
+    <Content Include="Areas\Internal\Views\Survey\Surveys.cshtml" />
+    <Content Include="Areas\Internal\Views\Survey\_AddSurvey.cshtml" />
+    <Content Include="Areas\Internal\Views\Survey\EditSurvey.cshtml" />
+    <Content Include="Areas\Internal\Views\Survey\_AddSurveyOption.cshtml" />
+    <Content Include="Areas\Internal\Views\Survey\_EditSurveyOption.cshtml" />
+    <Content Include="Areas\Private\Views\Home\_Surveys.cshtml" />
+    <Content Include="Areas\Private\Views\Reports\Iteration.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_EditUser.cshtml" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\teammashup.server.pubxml" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\hogan-2.0.0.js" />
+    <Content Include="Scripts\hogan-2.0.0.min.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\jquery.extensions.js" />
+    <Content Include="Scripts\jquery.dataTables.rowReordering.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-1.1.3.js" />
+    <Content Include="Scripts\jquery.signalR-1.1.3.min.js" />
+    <Content Include="Scripts\jquery.typewatch.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mustache.js" />
+    <Content Include="Scripts\team.mashup.ui.js" />
+    <Content Include="Scripts\team.mashup.core.js" />
+    <Content Include="Scripts\team.mashup.data-table.js" />
+    <Content Include="Scripts\typeahead.js" />
+    <Content Include="Scripts\typeahead.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_ValidationPopover.cshtml" />
+    <Content Include="Views\Shared\_DeleteModal.cshtml" />
+    <Content Include="Views\Shared\_Printable.cshtml" />
+    <Content Include="Views\Shared\_PeriodFilter.cshtml" />
+    <Content Include="Views\Shared\_DeleteModalOld.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Private\Views\Shared\" />
+    <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Areas\Public\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Project\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Project\Project.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Backlog\_AddIssue.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Backlog\EditIssue.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Backlog\Issues.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Iteration\EditIteration.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Iteration\Iterations.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\ProjectBase\_SelectIteration.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\ProjectBase\_SelectRelease.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Release\EditRelease.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Private\Views\Release\Releases.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Public\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Public\Views\Home\Home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Public\Views\Register\SelectPlan.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Public\Views\SignIn\PasswordRecoveryEmailSent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Public\Views\SignIn\RecoverPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Public\Views\SignIn\RestorePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\Elusive-Icons.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\Elusive-Icons.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\Elusive-Icons.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Public.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Tenants.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeamMashup.Core.Enums\TeamMashup.Core.Enums.csproj">
+      <Project>{3e557229-1ec1-4b5e-95fe-6bafc28eeec3}</Project>
+      <Name>TeamMashup.Core.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamMashup.Core.I18n\TeamMashup.Core.I18n.csproj">
+      <Project>{8102906f-d8e4-4367-b837-9fac16162087}</Project>
+      <Name>TeamMashup.Core.I18n</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamMashup.Core\TeamMashup.Core.csproj">
+      <Project>{56d4e351-5fbe-4a8c-817b-b3ac929623e8}</Project>
+      <Name>TeamMashup.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamMashup.Membership\TeamMashup.Membership.csproj">
+      <Project>{42163646-614e-4364-b6a0-31901cad0c3e}</Project>
+      <Name>TeamMashup.Membership</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamMashup.Models\TeamMashup.Models.csproj">
+      <Project>{5ca0505e-9306-4b30-833b-43706ed01f22}</Project>
+      <Name>TeamMashup.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Areas\Internal\Views\Backup\i18n\Backup.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Backup.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Backup\i18n\Backup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Backup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Billing\i18n\Billing.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Billing.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Billing\i18n\BIlling.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BIlling.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Region\i18n\Region.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Region.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Region\i18n\Region.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Region.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Survey\i18n\Survey.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Survey.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Internal\Views\Survey\i18n\Survey.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Survey.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Issue\i18n\Issue.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Issue.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Issue\i18n\Issue.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Issue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Iteration\i18n\Iteration.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Iteration.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Iteration\i18n\Iteration.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Iteration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Release\i18n\Release.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Release.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Release\i18n\Release.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Release.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Reports\i18n\Reports.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Reports.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Reports\i18n\Reports.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Reports.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Work\i18n\Work.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Work.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Private\Views\Work\i18n\Work.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Work.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Public\Views\Home\i18n\Home.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Home.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Public\Views\Home\i18n\Home.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Home.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Public\Views\Register\i18n\Register.es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Register.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Areas\Public\Views\Register\i18n\Register.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Register.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>24440</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2840/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

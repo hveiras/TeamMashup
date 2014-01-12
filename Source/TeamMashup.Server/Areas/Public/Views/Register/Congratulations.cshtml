@@ -1,0 +1,19 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Public.Views.Register.i18n;
+
+@{
+    ViewBag.Title = "Congratulations";
+    Layout = "~/Views/Shared/_Public.cshtml";
+}
+
+<div id="register">
+    <div class="congratulations">
+        <br />
+        <div class="container">
+            <div class="page-header container">
+                <h1>@Localized.Congratulations! <small>@Register.YouCanStart</small></h1>
+            </div>
+            <a href="@Url.RouteUrl("Private_default", new { tenant = ViewBag.TenantName, controller = "Home", action = "Index" })" class="btn btn-lg btn-primary">@Localized.StartHere</a>
+        </div>
+    </div>
+</div>

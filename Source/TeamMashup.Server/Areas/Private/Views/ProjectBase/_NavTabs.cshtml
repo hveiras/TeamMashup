@@ -1,0 +1,9 @@
+﻿@using TeamMashup.Core.I18n;
+
+@{ var activeTab = ViewBag.ActiveTab; }
+
+<ul class="nav nav-tabs">
+    <li id="planTab" class="@Html.Raw(activeTab == "Plan" ? "active" : string.Empty)"><a href="@Url.RouteUrl("Private_project_plan", new { tenant = ViewBag.TenantName, projectname = ViewBag.ProjectName, controller = "Backlog" })">@Localized.Plan</a></li>
+    <li id="workTab" class="@Html.Raw(activeTab == "Work" ? "active" : string.Empty)"><a href="@Url.RouteUrl("Private_project_work", new { tenant = ViewBag.TenantName, projectname = ViewBag.ProjectName, controller = "Work" })">@Localized.Work</a></li>
+    <li id="trackTab" class="@Html.Raw(activeTab == "Reports" ? "active" : string.Empty)"><a href="@Url.RouteUrl("Private_project_reports", new { tenant = ViewBag.TenantName, projectname = ViewBag.ProjectName, controller = "Reports" })">@Localized.Reports</a></li>
+</ul>

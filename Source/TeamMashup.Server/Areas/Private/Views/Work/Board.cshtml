@@ -1,0 +1,195 @@
+﻿@using TeamMashup.Core.Enums;
+@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Private.Views.Work.i18n;
+
+@model TeamMashup.Models.Private.BoardModel
+
+@{
+    ViewBag.Title = "Tasks";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/ecmascript">
+
+    var definedTable;
+    var inProgressTable;
+    var doneTable;
+
+    $(document).ready(function () {
+
+        definedTable = createTable("definedTable", "@ScheduleState.Defined");
+        inProgressTable = createTable("inProgressTable", "@ScheduleState.InProgress");
+        doneTable = createTable("doneTable", "@ScheduleState.Done");
+
+        $(".drop-area").droppable({
+            drop: function (event, ui) {
+                onIssueDropped($(this), ui.draggable[0]);
+            }
+        });
+
+    });
+
+    function createTable(tableId, state) {
+
+        var table = new TeamMashupDataTable({
+            tableId: tableId,
+            sourceUrl: '@Url.Action("GetIterationIssues", "Work")?iterationId=@Model.IterationId&state=' + state,
+            columns: [
+                {
+                    "mData": null,
+                    "sTitle": "",
+                    "bSortable": false,
+                    "sClass": "grid-field-40",
+                    "mRender": function (data, type, full) {
+                        return "<img src='/Content/Images/user-placeholder-50x50.jpg' />";
+                    }
+                },
+                {
+                    "mData": "Summary",
+                    "sTitle": "",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<a href='@Url.Action("Index", "Issue")?id=" + definedTable.getOriginalId(full.DT_RowId) + "&backUrl=@Url.Encode(Url.Action("Board", "Work"))'>" + data + "</a>";
+                    }
+                },
+                {
+                    "mData": "StoryPoints",
+                    "sTitle": "",
+                    "sClass": "grid-field-20",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<span class='badge'>" + data + " SP</span>";
+                    }
+                },
+                {
+                    "mData": "Priority",
+                    "sTitle": "",
+                    "sClass": "grid-field-20",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return "<span class='badge'>" + data + "</span>";
+                    }
+                }
+            ],
+             reorderRows: true,
+             rowsSelectable: false,
+             showEdit: false,
+             showEditInNewWindow: false,
+             showDelete: false,
+             showMoreOptions: false
+         });
+
+        return table;
+    }
+
+    function onIssueDropped(container, item) {
+
+        var id = $(item).attr("Id").split("_")[1];
+        var state = container.data("state");
+
+        $.ajax({
+            url: '@Url.Action("ChangeIssueState", "Work")',
+            type: "POST",
+            data: JSON.stringify({ id: id, state: state }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8"
+        })
+        .done(function (response) {
+            if (response.Success) {
+                refreshAllTables();
+            }
+            else {
+                alert(response.Message);
+            }
+        });
+        }
+
+        function refreshAllTables() {
+            definedTable.draw();
+            inProgressTable.draw();
+            doneTable.draw();
+        }
+
+</script>
+
+<div id="work">
+    <div class="tasks">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Work" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @if (ViewBag.ShowBoard)
+                    {
+                        <div class="row">
+                            <ul class="nav nav-pills">
+                                <li class="disabled"><a href="#"><strong>@ViewBag.ProjectName</strong></a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">@Model.IterationName <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("CompleteIteration", "Work", new { id = Model.IterationId })">Complete Iteration</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>@Localized.Defined</h4>
+                                <div class="well drop-area" data-state="@ScheduleState.Defined">
+                                    <div class="table-container">
+                                        <table id="definedTable" class="grid-control table table-striped">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>@Localized.InProgress</h4>
+                                <div class="well drop-area" data-state="@ScheduleState.InProgress">
+                                    <div class="table-container">
+                                        <table id="inProgressTable" class="grid-control table table-striped">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>@Localized.Done</h4>
+                                <div class="well drop-area" data-state="@ScheduleState.Done">
+                                    <div class="table-container">
+                                        <table id="doneTable" class="grid-control table table-striped">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning fixed-w-500 container">
+                            <strong>@Work.NoActiveIteration
+                            </strong>
+                            <a href="@Url.RouteUrl("Private_project_plan", new { tenant = ViewBag.TenantName, projectname = ViewBag.ProjectName, controller = "Release", action = "Plan" })" class="alert-link">@Work.YouShouldStartOneFirst</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

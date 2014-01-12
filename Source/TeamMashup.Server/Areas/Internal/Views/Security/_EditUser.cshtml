@@ -1,0 +1,40 @@
+﻿@model TeamMashup.Models.UserModel
+
+<script type="text/javascript">
+
+    function onUserEditedSuccess(data, status, xhr)
+    {
+        if (status == "success") {
+
+            if (data.Success) {
+                modal.modal('hide');
+                table.draw();
+            }
+            else {
+                $("#editUserInlineFormModal").html(data.View);
+                applyUiErrorStylesIfAny();
+            }
+
+        }
+    }
+
+</script>
+
+@using (Ajax.BeginForm("EditUser", null, new AjaxOptions { OnSuccess = "onUserEditedSuccess(data, status, xhr)" }, new { role = "form" }))
+{
+    <div class="modal-body">
+
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <label for="name">User name</label>
+            <input type="text" id="name" name="name" value="@Model.Name" class="form-control" placeholder="Enter user name" />
+            @Html.ValidationMessage("name", new { @class = "control-label" })
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary delete">Save</button>
+    </div>
+}

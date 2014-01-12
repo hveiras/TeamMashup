@@ -1,0 +1,93 @@
+﻿@using TeamMashup.Core.I18n
+
+@{
+    ViewBag.Title = "Surveys";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+<script type="text/javascript">
+
+    var table;
+    var modal
+
+    $(document).ready(function () {
+        table = new TeamMashupDataTable({
+            tableId: "surveysTable",
+            sourceUrl: '@Url.Action("GetSurveyItems", "Survey")',
+            columns: [
+                { "mData": "Title", "sTitle": "@Localized.Title" },
+            ],
+            deleteUrl: '@Url.Action("DeleteSurveys", "Survey")',
+            onItemDelete: function (id) {
+                handleRowDelete({
+                    ids: [id],
+                    modalId: 'modal',
+                    modal: modal,
+                    displayAction: '@Url.Action("DeleteSurveys", "Survey")?id=' + id,
+                    deleteAction: '@Url.Action("DeleteSurveys", "Survey")'
+                });
+            },
+            onItemEdit: function (id, newWindow) {
+                var url = '@Url.Action("Edit", "Survey")?id=' + id;
+                if (newWindow) {
+                    window.open(url);
+                }
+                else {
+                    window.location = url;
+                }
+            },
+            onDraw: function () {
+                bindJsModals();
+            },
+            showMoreOptions: false
+        });
+
+    });
+
+    function addSurveyComplete() {
+    }
+
+    function addSurveySuccess(data) {
+        addSurveyContainerUpdate(data);
+        table.draw();
+    }
+
+    function addSurveyValidationErrors(data) {
+        addSurveyContainerUpdate(data);
+        applyUiErrorStylesIfAny();
+    }
+
+    function addSurveyContainerUpdate(data) {
+        $("#addSurveyContainer").html(data.View);
+    }
+
+</script>
+
+<div id="survey">
+    <div class="surveys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div id="addCountryContainer">
+                    @{ Html.RenderAction("AddSurvey"); }
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-container">
+                    <table id="surveysTable" class="grid-control table table-striped">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal" class="modal" role="dialog"></div>

@@ -1,0 +1,79 @@
+﻿@using System.Web.Optimization
+@using TeamMashup.Core.I18n
+
+<!DOCTYPE html>
+<html id="public">
+<head>
+    <title>@ViewBag.Title</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/teammashup")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            applyUiErrorStylesIfAny();
+        });
+    </script>
+
+    @Styles.Render("~/Content/styles")
+
+</head>
+
+<body class="public">
+    <div id="page">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">
+                        <img src="~/Content/images/logo.png" alt="Team Mashup" /></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    @if (ViewBag.ShowLogin)
+                    {
+                        using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
+                        {
+                        <div class="form-group">
+                            <input type="text" id="email" name="email" value="@ViewBag.Email" class="form-control fixed-w-200" placeholder="Email">
+                            @Html.ValidationPopover("email")
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-control fixed-w-200" placeholder="Password">
+                            @Html.ValidationPopover("password")
+                        </div>
+                        <button class="btn btn-success" type="submit">@Localized.SignIn</button>
+                        <br />
+                        <div class="checkbox">
+                            <label class="color-white">
+                                @Html.CheckBox("RememberMe")
+                                @Localized.RememberMe
+                            </label>
+                        </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <section id="content" role="main">
+            @RenderBody()
+        </section>
+
+        <footer class="container">
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2013 TeamMashup, S.R.L. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        </footer>
+
+    </div>
+</body>
+</html>

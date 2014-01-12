@@ -1,0 +1,100 @@
+﻿@using System.Web.Optimization
+
+@model TeamMashup.Models.Internal.RoleMembersModel
+
+@{
+    ViewBag.Title = "RoleMembers";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#searchUsers").typeahead({
+            remote: '@Url.Action("SearchUsers", "Security")?searchTerm=%QUERY',
+            template: '<p>{{name}}</p>',
+            engine: Hogan,
+            limit: 10,
+            valueKey: "name"
+        })
+        .bind("typeahead:selected", function (obj, datum) {
+
+            var exists = $("#selectedMembers option[value='" + datum.value + "']").length !== 0;
+
+            if (!exists) {
+                $("#selectedMembers").append('<option value=' + datum.value + '>' + datum.name + '</option>');
+            }
+
+        });
+
+        $("#updateRoleMembers").click(function () {
+
+            var roleId = '@Model.RoleId';
+            var ids = new Array();
+            $("#selectedMembers option").each(function () {
+                ids.push($(this).val());
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateRoleMembers", "Security")',
+                dataType: "json",
+                traditional: true,
+                data: { roleId: roleId, userIds: ids },
+                success: function (data) {
+                    if (data.Success) {
+                        window.location = data.RedirectUrl;
+                    }
+                }
+            });
+        });
+
+        $("#removeSelected").click(function () {
+            $('#selectedMembers option:selected').each(function() {
+                $(this).remove();
+            });
+        });
+
+        $("#cancel").click(function () {
+            window.location = '@Url.Action("Roles", "Security")';
+        });
+
+    });
+
+</script>
+
+<div id="accessControl">
+    <div class="roles">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", new { activeTab = "Roles" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h4>Manage users for role: @Model.RoleName</h4>
+                            <div class="form-group">
+                                <label for="searchUsers">Add user(s) to role:</label>
+                                <br />
+                                <input type="text" id="searchUsers" name="searchUsers" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Selected members</label>
+                                @Html.ListBoxFor(x => x.Members, Model.Members, new { @class = "form-control", id = "selectedMembers" })
+                            </div>
+
+                            <button id="removeSelected" class="btn btn-warning">Remove Selected</button>
+                            
+                            <button id="updateRoleMembers" class="btn btn-primary pull-right">Save</button>
+                            <button id="cancel" class="btn pull-right">Cancel</button>
+                        </div>
+                        <div class="col-xs-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+<add name="DatabaseContext" providerName="System.Data.SqlClient" connectionString="Data Source=.\;Initial Catalog=TeamMashup;User Id=teammashup;Password=test1234;" />

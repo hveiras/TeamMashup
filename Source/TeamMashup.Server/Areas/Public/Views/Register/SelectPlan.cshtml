@@ -1,0 +1,30 @@
+﻿@using TeamMashup.Core.I18n
+
+@model TeamMashup.Models.Public.SelectPlanModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Public.cshtml";
+}
+
+<div id="register">
+    <div class="select-plan">
+        <br />
+        <div class="container">
+            <div class="page-header container">
+                <h1>@Localized.SelectAPlan</h1>
+            </div>
+            @foreach (var plan in Model.Plans)
+            {
+                <div class="plan-box float-left">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>@plan.Name</h3>
+                            <p>@plan.Description</p>
+                            <p><a href="@Url.Action("CreateSubscription", new { planId = plan.Id})" class="btn btn-primary">@Localized.Select @plan.Name @Localized.Plan</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,265 @@
+﻿@using TeamMashup.Core.Extensions;
+@using TeamMashup.Core.Enums;
+@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Private.Views.Release.i18n;
+
+@model TeamMashup.Models.Private.PlanReleaseModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+@Styles.Render("~/Content/datatables")
+@Scripts.Render("~/bundles/datatables")
+
+@{
+    var anyReleaseExists = ((object)ViewBag).Has("ReleaseId");
+}
+
+@if (anyReleaseExists)
+{
+    <script type="text/javascript">
+
+        var table;
+        var modal;
+        var iterationTables = {};
+
+        $(document).ready(function () {
+
+            table = new TeamMashupDataTable({
+                tableId: "issuesTable",
+                sourceUrl: '@Url.Action("GetBacklogItems", "Backlog")',
+                columns: [
+                    { "mData": "Summary", "sTitle": "@Localized.Summary" }
+                ],
+                reorderRows: true
+            });
+
+            @foreach (var iteration in Model.Iterations)
+            {   
+                <text>
+
+            iterationTables['@iteration.Id'] = new TeamMashupDataTable({
+                tableId: "iterationTable_" + "@iteration.Id",
+                sourceUrl: '@Url.Action("GetIterationIssues", "Release", new { iterationId = iteration.Id })',
+                columns: [
+                    { "mData": "Name", "sTitle": "@Localized.Name" },
+                    { "mData": "StoryPoints", "sTitle": "@Localized.StoryPoints" },
+                    {
+                        "mData": null,
+                        "sName": "RemoveFromIteration",
+                        "sTitle": "",
+                        "sClass": "grid-field-20 grid-icon",
+                        "bSortable": false,
+                        "mRender": function (data, type, full) {
+                            return "<i class=\"icon-remove-sign cursor-pointer\" title=\"Remove from '@iteration.Name'\" />";
+                        }
+                    }
+                ],
+                reorderRows: true,
+                showDelete: false,
+                onRowClicked: function (id, column) {
+                    if (column.sName == "RemoveFromIteration") {
+                        unscheduleIssue(id, @iteration.Id);
+                    }
+                }
+            });
+
+                </text>
+            }
+
+            $(".iteration-container").droppable({
+                drop: function (event, ui) {
+                    scheduleIssue($(this), ui.draggable[0]);
+                }
+            });
+
+            $(".start-iteration").click(function() {
+                
+                modal = $('#modal');
+
+                var id = $(this).data("iterationId");
+
+                modal.load('@Url.Action("StartIteration", "Release")?id=' + id + '&_=' + $.now(), function () {
+                    modal.modal();
+                });
+
+            });
+
+        });
+
+        function scheduleIssue(container, item) {
+
+            container.find(".alert-info").hide();
+
+            var releaseId = container.data("release-id");
+            var iterationId = container.data("iteration-id");
+
+            var tableId = "iterationTable_" + iterationId;
+            var table = $("#" + tableId);
+
+            table.removeClass("hidden");
+
+            //TODO: put this split logic inside the table object!
+            var id = $(item).attr("Id").split("_")[1];
+
+            $.ajax({
+                url: '@Url.Action("ScheduleIssues", "Release")',
+                type: "POST",
+                data: JSON.stringify({ ids: [id], releaseId: releaseId, iterationId: iterationId }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.Success) {
+                        refreshAllTables();
+                    }
+                }
+            });
+        }
+
+        function unscheduleIssue(id, iterationId) {
+            $.ajax({
+                url: '@Url.Action("UnscheduleIssues", "Release")',
+                type: "POST",
+                data: JSON.stringify({ ids: [id], iterationId: iterationId }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.Success) {
+                        refreshAllTables();
+                    }
+                }
+            });
+        }
+
+        function refreshAllTables() {
+
+            table.draw();
+
+            for (var i in iterationTables) {
+                iterationTables[i].draw();
+            }
+
+        }
+
+        function startIterationComplete() {}
+
+        function startIterationSuccess(data) {
+            modal.modal('hide');
+            window.location.reload();
+        }
+
+        function startIterationValidationErrors(data) {
+            $("#modal").html(data.View);
+            applyUiErrorStylesIfAny();
+        }
+
+    </script>
+}
+
+<div id="plan">
+    <div class="plan">
+        <div class="tabbable">
+
+            @{ Html.RenderAction("NavTabs", "ProjectBase", new { activeTab = "Plan" }); }
+
+            <div class="tab-content">
+                <div class="tab-pane active">
+
+                    @{ Html.RenderAction("NavPills", "ProjectBase", new { tab = "Plan", activePill = "Plan" });}
+
+                    <br />
+
+                    @if (anyReleaseExists)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn icon-refresh cursor-pointer"></button>
+                                <div class="table-container">
+                                    <table id="issuesTable" class="grid-control table table-striped">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.Action("SelectRelease", "ProjectBase", new { releaseId = ViewBag.ReleaseId, action = "Plan", controller = "Release" })
+                                <br />
+                                <h4>@Localized.DisplayingIterationsFor @Model.Name (@Model.StartDate.ToShortDateString() - @Model.EndDate.ToShortDateString()).</h4>
+                                <div class="btn-group">
+                                    <button class="btn">@Localized.Actions</button>
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li id="removeSelected">@Localized.RemoveSelected</li>
+                                    </ul>
+                                </div>
+                                <br />
+                                <br />
+                                @if (Model.HasActiveIterations)
+                                {
+                                    foreach (var iteration in Model.Iterations)
+                                    {
+                                        if (iteration.State != IterationState.Accepted)
+                                        {
+                                    <div class="panel panel-default iteration-container" data-release-id="@iteration.ReleaseId" data-iteration-id="@iteration.Id">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">@iteration.Name
+                                                @if (!ViewBag.ProjectIsActive)
+                                                {
+                                                    <button class="btn btn-xs btn-success pull-right start-iteration" data-iteration-id="@iteration.Id">@Localized.Start</button>
+                                                }
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            @{
+                                                bool hasStories = iteration.HasUserStories;
+                                                var iterationdTableId = "iterationTable_" + iteration.Id;
+                                            }
+                                            <div class="alert alert-info @Html.BoolToVisibilityConverter(!hasStories)">
+                                                @Release.ReleasePlanNoIssuesSelected
+                                            </div>
+
+                                            <div class="table-container">
+                                                <table id="@iterationdTableId" class="@Html.BoolToVisibilityConverter(hasStories) grid-control table table-striped">
+                                                    <thead>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning">
+                                        <strong>@Release.ReleasePlanNoActiveIterationForRelease
+                                        </strong>
+                                        @Localized.YouCan <a href="@Url.Action("Index", "Iteration")" class="alert-link">@Localized.CreateANewOne</a>
+                                        @Localized.OrYouCan <a href="@Url.Action("MarkReleaseAsCompleted", "Release", new { id = ViewBag.ReleaseId })" class="alert-link">@Release.MarkThisReleaseAsCompleted</a> 
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                         <div class="alert alert-warning">
+                            <strong>@Release.NoActiveRelease
+                            </strong>
+                            You can <a href="@Url.Action("Index", "Release")" class="alert-link">@Localized.CreateANewOne</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal" role="dialog"></div>

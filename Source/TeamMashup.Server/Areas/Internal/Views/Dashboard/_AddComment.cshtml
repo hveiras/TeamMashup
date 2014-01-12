@@ -1,0 +1,8 @@
+﻿@using (Ajax.BeginForm("AddComment", null, new AjaxOptions { OnSuccess = "onCommentAddedSuccess(data, status, xhr)", UpdateTargetId = "addCommentForm" }, new { @class = "form-inline", role = "form" }))
+{
+    @Html.ValidationSummary(true)
+    
+    <textarea id="message" name="message" class="form-control textarea-lg" placeholder="What do you want to share?"></textarea>
+    <button type="submit" class="btn btn-primary btn-lg">Post</button>
+    
+}

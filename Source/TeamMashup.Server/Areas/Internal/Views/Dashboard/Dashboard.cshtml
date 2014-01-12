@@ -1,0 +1,77 @@
+﻿@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Internal/Views/Shared/_PrivateLayout.cshtml";
+}
+
+<script type="text/javascript">
+
+    var commentsDisplayStart = 0;
+
+    $(document).ready(function () {
+
+        loadComments();
+
+    });
+
+    function loadComments() {
+        $.get('@Url.Action("GetComments", "Dashboard")', { iDisplayStart: commentsDisplayStart, iDisplayLength: 10, sEcho: "1" })
+        .done(function (data) {
+            renderComments("commentsList", data);
+
+            $(".reply").keypress(function (e) {
+                if (e.which == 13) {
+
+                    var commentId = $(this).data("id");
+                    var message = $(this).val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("AddReply", "Dashboard")',
+                        dataType: "json",
+                        traditional: true,
+                        data: { CommentId: commentId, Message: message},
+                        success: function (data) {
+                        }
+                    }).
+                    done(function(response)
+                    {
+                        if (response.Success) {
+                            loadComments();
+                        }
+                    });
+                }
+            });
+
+        });
+    }
+
+    function onCommentAddedSuccess(data, status, xhr) {
+        loadComments();
+    }
+
+</script>
+
+<div id="dashboard">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div id="addCommentForm">
+                        @{Html.RenderAction("AddComment");}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul id="commentsList" class="media-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            @{Html.RenderAction("ChatClient");}
+        </div>
+    </div>
+</div>

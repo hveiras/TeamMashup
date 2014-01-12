@@ -1,0 +1,7 @@
+﻿@{ var activeTab = ViewBag.ActiveTab; }
+
+<ul class="nav nav-tabs">
+    <li id="rolesTab" class="@Html.Raw(activeTab == "Roles" ? "active" : string.Empty)"><a href="@Url.Action("Roles", "Security")">Roles</a></li>
+    <li id="usersTab" class="@Html.Raw(activeTab == "Users" ? "active" : string.Empty)"><a href="@Url.Action("Users", "Security")">Users</a></li>
+    <li id="claimsTab" class="@Html.Raw(activeTab == "Claims" ? "active" : string.Empty)"><a href="@Url.Action("Claims", "Security")">Claims</a></li>
+</ul>

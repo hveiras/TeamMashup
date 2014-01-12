@@ -1,0 +1,96 @@
+﻿@using TeamMashup.Core.I18n
+@using TeamMashup.Core.Enums
+
+@model TeamMashup.Models.Private.ReleaseModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+        $('.datepicker').datepicker();
+
+    });
+
+</script>
+
+<div id="plan">
+    <div class="releases">
+        <ol class="breadcrumb">
+            <li><a href="#">SampleProject</a></li>
+            <li><a href="#">COD-XXX</a></li>
+        </ol>
+        <div class="page-header">
+            <h2>@Model.Name</h2>
+        </div>
+
+        @using (Html.BeginForm("Edit", "Release", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+        {
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="hidden" name="state" value="@Model.State" />
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="name" class="col-md-2 control-label">@Localized.Name</label>
+                        <div class="col-md-10">
+                            <input type="text" name="name" id="name" value="@Model.Name" class="form-control" />
+                            @Html.ValidationMessage("name", new { @class = "control-label" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-md-2 control-label">@Localized.Description</label>
+                        <div class="col-md-10">
+                            <textarea id="description" name="description" class="form-control no-resize">@Model.Description</textarea>
+                            @Html.ValidationMessage("description", new { @class = "control-label" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="from" class="col-md-2 control-label">@Localized.From</label>
+                        <div class="col-md-10">
+                            @if (Model.State > ReleaseState.Planning)
+                            {
+                                <input name="from" type="hidden" value="@Model.From.ToShortDateString()" />
+                                <p class="form-control-static">@Model.From.ToShortDateString()</p>
+                            }
+                            else
+                            {
+                                <input id="from" name="from" type="text" value="@Model.From.ToShortDateString()" class="form-control datepicker" />
+                                @Html.ValidationMessage("from", new { @class = "control-label" })
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="to" class="col-md-2 control-label">@Localized.To</label>
+                        <div class="col-md-10">
+                            @if (Model.State > ReleaseState.Planning)
+                            {
+                                <input name="to" type="hidden" value="@Model.To.ToShortDateString()" />
+                                <p class="form-control-static">@Model.To.ToShortDateString()</p>
+                            }
+                            else
+                            {
+                                <input id="to" name="to" type="text" value="@Model.To.ToShortDateString()" class="form-control datepicker" />
+                                @Html.ValidationMessage("to", new { @class = "control-label" })
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="col-md-2 control-label">@Localized.State</label>
+                        <div class="col-md-10">
+                            <p class="form-control-static">@Model.State</p>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary">@Localized.Save</button>
+                        <a href="@Url.Action("Index")" class="btn btn-default">@Localized.Cancel</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        }
+    </div>
+</div>

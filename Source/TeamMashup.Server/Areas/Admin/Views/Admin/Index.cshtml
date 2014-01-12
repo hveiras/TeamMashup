@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+<h2>Index</h2>
+
+<a href='@Url.Action("Index", "Group", new { Area = "Admin" })'>Manage Groups</a>
+
+<a href='@Url.Action("Index", "Project", new { Area = "Admin" })'>Manage Projects</a>

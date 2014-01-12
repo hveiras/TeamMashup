@@ -1,0 +1,14 @@
+﻿/* Bootstrap */
+
+.tab-content {
+    padding: 20px;
+    border: 1px #ddd solid;
+    border-top: none;
+    min-height: 800px;
+}
+
+.nav {
+    margin-bottom: 0;
+}
+
+/* End of Bootstrap */

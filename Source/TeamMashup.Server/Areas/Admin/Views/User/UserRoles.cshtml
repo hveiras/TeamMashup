@@ -1,0 +1,94 @@
+﻿@model TeamMashup.Models.Admin.UserRolesModel
+
+@{
+    ViewBag.Title = "UserRoles";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#addButton").click(function () {
+            $("#availableRoles option:selected").appendTo("#selectedRoles");
+        });
+
+        $("#addAllButton").click(function () {
+            $("#availableRoles option").appendTo("#selectedRoles");
+        });
+
+        $("#removeButton").click(function () {
+            $("#selectedRoles option:selected").appendTo("#availableRoles");
+        });
+
+        $("#removeAllButton").click(function () {
+            $("#selectedRoles option").appendTo("#availableRoles");
+        });
+
+        $("#updateUserRoles").click(function () {
+
+            var userId = '@Model.UserId';
+            var ids = new Array();
+            $("#selectedRoles option").each(function () {
+                ids.push($(this).val());
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateUserRoles", "User")',
+                dataType: "json",
+                traditional: true,
+                data: { userId: userId, roleIds: ids },
+                success: function (data) {
+                    if (data.Success) {
+                        window.location = data.RedirectUrl;
+                    }
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<div id="admin">
+    <div class="users">
+        <h4>Manage Roles for user: @Model.UserName</h4>
+
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label for="searchUsers">Add role(s) to user:</label>
+                    @Html.ListBoxFor(x => x.AvailableRoles, Model.AvailableRoles, new { @class = "form-control", id = "availableRoles" })
+                </div>
+            </div>
+            <div class="col-xs-1">
+                <br />
+                <div class="form-group">
+                    <p>
+                        <button id="addButton" class="btn btn-default"><b>></b></button>
+                    </p>
+                    <p>
+                        <button id="addAllButton" class="btn btn-default"><b>>></b></button>
+                    </p>
+                    <p>
+                        <button id="removeButton" class="btn btn-default"><b><</b></button>
+                    </p>
+                    <p>
+                        <button id="removeAllButton" class="btn btn-default"><b><<</b></button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-6">
+
+                <div class="form-group">
+                    <label>Selected roles</label>
+                    @Html.ListBoxFor(x => x.Roles, Model.Roles, new { @class = "form-control", id = "selectedRoles" })
+                </div>
+
+                <button id="updateUserRoles" class="btn btn-primary">Save</button>
+
+            </div>
+        </div>
+    </div>
+</div>

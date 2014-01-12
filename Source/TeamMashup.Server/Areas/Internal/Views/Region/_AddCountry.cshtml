@@ -1,0 +1,15 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Core;
+
+@model TeamMashup.Models.Internal.CountryModel
+
+@using(Ajax.CustomBeginForm("AddCountry", "addCountry", new { role = "form", @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label class="sr-only" for="name">@Localized.Name</label>
+        <input type="text" id="name" name="name" class="form-control fixed-w-500" placeholder="@Localized.Name" />
+        @Html.ValidationPopover("name")
+    </div>
+    
+    <button id="add" type="submit" class="btn btn-primary">@Localized.Add</button>
+}

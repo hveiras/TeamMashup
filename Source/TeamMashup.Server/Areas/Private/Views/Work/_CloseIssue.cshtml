@@ -1,0 +1,40 @@
+﻿@using TeamMashup.Core.I18n;
+@using TeamMashup.Server.Areas.Private.Views.Work.i18n;
+
+@model TeamMashup.Models.Private.IssueModel
+
+<script type="text/javascript">
+
+    function onLogWorkSuccess(data, status, xhr) {
+
+        if (status == "success") {
+
+            if (data.Success) {
+                modal.modal('hide');
+                window.location = data.RedirectUrl;
+            }
+        }
+    }
+
+</script>
+
+@using (Ajax.BeginForm("CloseIssue", null, new AjaxOptions { OnSuccess = "onIssueClosedSuccess(data, status, xhr)", UpdateTargetId = "modal" }, new { role = "form" }))
+{
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div class="modal-header">
+        <h4 class="modal-title">@Work.CloseIssue</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-warning">
+          
+        </div>
+        <div class="alert alert-danger hide"></div>
+    </div>
+    <div class="modal-footer">
+        <div class="checkbox pull-left">
+            <input type="checkbox" />@Localized.DontShowMeThisAnymore
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@Localized.Close</button>
+        <button type="submit" class="btn btn-danger">@Localized.CloseIssue</button>
+    </div>
+}

@@ -1,0 +1,30 @@
+﻿@using TeamMashup.Core.I18n
+
+@model TeamMashup.Models.Private.UserProfileModel
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_Tenants.cshtml";
+}
+
+<div id="account">
+    <div class="page-header">
+        <h2>@ViewBag.UserName</h2>
+    </div>
+    @using (Html.BeginForm("Update", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="form-group">
+            <label for="languageId" class="col-lg-2 control-label">@Localized.Language</label>
+            <div class="col-lg-10">
+                <select id="languageId" name="languageid" class="form-control">
+                    @foreach (var language in Model.Languages)
+                    {
+                        <option value="@language.Value">@language.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    }
+</div>
